@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fb;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 400px;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: Montserrat, sans-serif;
+  font-size: 32px;
+  color: #c2262b;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #171a1f;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  width: 100%;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #171a1f;
+  margin-bottom: 6px;
+}
+
+.formGroup input,
+.formGroup select {
+  height: 40px;
+  padding: 8px 10px;
+  border: 1px solid #dee1e6;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.button {
+  width: 100%;
+  background-color: #c2262b;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background-color: #a51f24;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.footer a {
+  font-size: 14px;
+  color: #565d6d;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
