@@ -55,12 +55,14 @@
 /* --- LAYOUT GENERAL --- */
 .pageContainer {
   display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* --- SIDEBAR --- */
 .sidebar {
   position: fixed;
-  top: 64px; /* justo debajo de la barra roja */
+  top: 64px;
   left: 0;
   width: 220px;
   height: calc(100vh - 64px);
@@ -70,7 +72,7 @@
   font-family: 'Open Sans', sans-serif;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* empuja el logo al final */
+  justify-content: space-between;
 }
 
 .menu {
@@ -105,19 +107,54 @@
 }
 
 .logoUdem {
-  width: 150px;
+  width: 100px;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 /* --- CONTENIDO PRINCIPAL --- */
 .content {
-  margin-top: 64px; /* espacio para la barra roja */
-  margin-left: 220px; /* espacio para la sidebar */
+  margin-top: 64px;
+  margin-left: 220px;
   padding: 24px;
   flex: 1;
   background-color: #fafafa;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px - 50px); /* ajusta para el footer */
+}
+
+/* --- FOOTER --- */
+.footer {
+  margin-left: 220px; /* mismo ancho que sidebar */
+  height: 50px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footerLinks a {
+  margin-right: 24px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.footerLinks a:hover {
+  text-decoration: underline;
+}
+
+.footerIcons a {
+  margin-left: 16px;
+  color: #333;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.footerIcons a:hover {
+  color: #C2262B;
 }
 
 /* --- EVITAR SCROLL HORIZONTAL --- */
