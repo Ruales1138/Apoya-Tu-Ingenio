@@ -107,9 +107,9 @@
 }
 
 .logoUdem {
-  width: 100px;
+  width: 150px;
   height: auto;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 /* --- CONTENIDO PRINCIPAL --- */
@@ -161,4 +161,65 @@
 body {
   margin: 0;
   overflow-x: hidden;
+}
+
+/* --- BANNER DE BIENVENIDA (alineado a la izquierda) --- */
+.welcomeBanner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* mantiene el botón a la derecha */
+  background-color:  #FBE9EEFF;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  font-family: 'Open Sans', sans-serif;
+  margin: 10px;
+}
+
+/* Agrupa icono + texto a la izquierda */
+.bannerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* icono a la izquierda */
+.welcomeIcon {
+  font-size: 22px;
+  flex: 0 0 auto;
+}
+
+/* bloque de texto alineado a la izquierda */
+.welcomeText {
+  text-align: left;
+  line-height: 1.1;
+}
+
+.welcomeText h2 {
+  font-size: 18px;
+  margin: 0;
+  color: #222;
+}
+
+.welcomeText p {
+  font-size: 14px;
+  margin: 4px 0 0;
+  color: #555;
+}
+
+.viewProfileBtn {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.viewProfileBtn:hover {
+  background-color: #f7f7f7;
+  box-shadow: 0 0 2px rgba(0,0,0,0.15);
 }

@@ -38,8 +38,19 @@ function Student() {
 
       {/* Contenido principal */}
       <main className={style.content}>
-        <h1>Bienvenido</h1>
-        <p>Aquí va el contenido principal de la página.</p>
+        {/* Banner de bienvenida */}
+        <div className={style.welcomeBanner}>
+          <div className={style.bannerLeft}>
+            <div className={style.welcomeIcon}>🏅</div>
+            <div className={style.welcomeText}>
+              <h2>¡Bienvenido, Susana Morales!</h2>
+              <p>Monitora activa en 1 convocatoria. ¡Revisa nuevas oportunidades!</p>
+            </div>
+          </div>
+
+          <button className={style.viewProfileBtn}>Ver perfil</button>
+        </div>
+
       </main>
 
       {/* Footer */}
