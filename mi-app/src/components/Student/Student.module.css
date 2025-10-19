@@ -64,7 +64,7 @@
   position: fixed;
   top: 64px;
   left: 0;
-  width: 220px;
+  width: 300px;
   height: calc(100vh - 64px);
   background-color: #fff;
   box-shadow: 1px 0 4px rgba(0, 0, 0, 0.1);
@@ -84,7 +84,7 @@
 .menu li {
   display: flex;
   align-items: center;
-  padding: 12px 20px;
+  padding: 12px 30px;
   color: #2d2d2d;
   font-size: 14px;
   cursor: pointer;
@@ -115,7 +115,7 @@
 /* --- CONTENIDO PRINCIPAL --- */
 .content {
   margin-top: 64px;
-  margin-left: 220px;
+  margin-left: 300px;
   padding: 24px;
   flex: 1;
   background-color: #fafafa;
@@ -124,7 +124,7 @@
 
 /* --- FOOTER --- */
 .footer {
-  margin-left: 220px; /* mismo ancho que sidebar */
+  margin-left: 300px; /* mismo ancho que sidebar */
   height: 50px;
   background-color: #fff;
   border-top: 1px solid #ddd;
@@ -223,3 +223,14 @@ body {
   background-color: #f7f7f7;
   box-shadow: 0 0 2px rgba(0,0,0,0.15);
 }
+
+.cardsContainer {
+  display: flex;
+  justify-content: center;      /* Centra el grupo de tarjetas horizontalmente */
+  align-items: flex-start;
+  flex-wrap: wrap;              /* Permite que bajen en pantallas pequeñas */
+  gap: 80px;                    /* Espacio entre tarjetas */
+  margin-top: 24px;
+}
+
+

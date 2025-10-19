@@ -3,6 +3,10 @@ import style from "./Student.module.css";
 import logo_app from "../../images/logo_app.png";
 import perfil from "../../images/perfil.png";
 import logo_udem from "../../images/logo_udem.png";
+import Card from "../Card/Card";
+import portada_1 from "../../images/portada_1.png";
+import portada_2 from "../../images/portada_2.png";
+import portada_3 from "../../images/portada_3.png";
 
 function Student() {
   return (
@@ -25,7 +29,7 @@ function Student() {
       {/* Barra lateral */}
       <aside className={style.sidebar}>
         <ul className={style.menu}>
-          <li className={style.active}>📢 Convocatorias</li>
+          <li>📢 Convocatorias</li>
           <li>📄 Mis Aplicaciones</li>
           <li>📊 Indicadores</li>
         </ul>
@@ -47,9 +51,35 @@ function Student() {
               <p>Monitora activa en 1 convocatoria. ¡Revisa nuevas oportunidades!</p>
             </div>
           </div>
-
           <button className={style.viewProfileBtn}>Ver perfil</button>
         </div>
+
+        {/* Convocatorias */}
+        <h2>Convocatorias Activas</h2>
+        <div className={style.cardsContainer}>
+          <Card
+            imagen={portada_1}
+            titulo="Monitoría de Programación I"
+            curso="Ingeniería de Sistemas"
+            semestre="2024-1"
+            fecha="15/05/2024"
+          />
+          <Card
+            imagen={portada_2}
+            titulo="Monitoría de Cálculo Diferencial"
+            curso="Matemáticas Aplicadas"
+            semestre="2024-1"
+            fecha="20/05/2024"
+          />
+          <Card
+            imagen={portada_3}
+            titulo="Monitoría de Circuitos Eléctricos"
+            curso="Ingeniería Electrónica"
+            semestre="2024-1"
+            fecha="22/05/2024"
+          />
+        </div>
+
 
       </main>
 

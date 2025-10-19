@@ -93,3 +93,9 @@
 .footer a:hover {
   text-decoration: underline;
 }
+
+.button {
+  text-decoration: none; /* Quita el subrayado */
+  color: white; /* Asegura que el texto quede blanco */
+  display: inline-block; /* Mantiene el estilo del botón */
+}

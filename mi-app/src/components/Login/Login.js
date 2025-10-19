@@ -1,6 +1,7 @@
 // import React from "react";
 import style from "./Login.module.css";
 import logo from "../../images/logo_udem.png";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -30,7 +31,7 @@ function Login() {
           </select>
         </div>
 
-        <button className={style.button}>Ingresar</button>
+        <Link to="/student" className={style.button}>Ingresar</Link>
 
         <div className={style.footer}>
           <a href="#">¿Olvidó su contraseña?</a>
