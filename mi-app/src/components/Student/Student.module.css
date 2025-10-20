@@ -359,6 +359,7 @@ body {
   cursor: pointer;
   transition: background 0.2s; 
   font-family: Open Sans;
+  text-decoration: none; /* Quita el subrayado */
 }
 
 .submitBtn:hover {

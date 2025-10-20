@@ -8,6 +8,7 @@ import portada_1 from "../../images/portada_1.png";
 import portada_2 from "../../images/portada_2.png";
 import portada_3 from "../../images/portada_3.png";
 import logo_subir from "../../images/logo_subir.png";
+import { Link } from "react-router-dom";
 
 function Student() {
   return (
@@ -144,7 +145,7 @@ function Student() {
         
           {/* Botones a la derecha */}
           <div className={style.formButtonsColumn}>
-            <button className={style.submitBtn}>Enviar aplicación</button>
+            <Link to="/form" className={style.submitBtn}>Enviar aplicación</Link>
             <div className={style.aiSupportBox}>Con apoyo de IA</div>
           </div>
         </div>

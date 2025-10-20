@@ -12,7 +12,7 @@
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   width: 400px;
-  padding: 40px 30px;
+  padding: 40px 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,8 @@
   font-size: 32px;
   color: #c2262b;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-top: 0px; /* reduce el espacio superior */
+  margin-bottom: 0px; /* mantiene espacio inferior si quieres */
 }
 
 .subtitle {
@@ -43,6 +44,7 @@
   margin-bottom: 16px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start; /* antes no estaba, fuerza alineación a la izquierda */
 }
 
 .formGroup label {
@@ -59,6 +61,9 @@
   border: 1px solid #dee1e6;
   border-radius: 6px;
   font-size: 14px;
+  width: 100%;       /* asegura que llenen el ancho del contenedor */
+  text-align: left; 
+  box-sizing: border-box; /* para que padding no aumente el ancho */
 }
 
 .button {
@@ -98,4 +103,10 @@
   text-decoration: none; /* Quita el subrayado */
   color: white; /* Asegura que el texto quede blanco */
   display: inline-block; /* Mantiene el estilo del botón */
+}
+
+.logoApp {
+  height: 40px; /* ajusta según lo necesites */
+  margin-bottom: 0; /* elimina espacio extra */
+  object-fit: contain;
 }

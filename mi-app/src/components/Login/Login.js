@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./Login.module.css";
 import logo from "../../images/logo_udem.png";
+import logo_app_2 from "../../images/logo_app_2.png";
 import { Link } from "react-router-dom";
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
     <div className={style.container}>
       <div className={style.card}>
         <img src={logo} alt="Universidad de Medellín" className={style.logo} />
+        <img src={logo_app_2} alt="Logo" className={style.logoApp} />
 
         <h2 className={style.title}>ApoyaTuIngenio</h2>
         <h3 className={style.subtitle}>Iniciar Sesión</h3>
