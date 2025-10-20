@@ -7,6 +7,7 @@ import Card from "../Card/Card";
 import portada_1 from "../../images/portada_1.png";
 import portada_2 from "../../images/portada_2.png";
 import portada_3 from "../../images/portada_3.png";
+import logo_subir from "../../images/logo_subir.png";
 
 function Student() {
   return (
@@ -127,6 +128,30 @@ function Student() {
           </table>
       </div>
 
+      {/* Formulario de aplicación */}
+      <section className={style.applicationForm}>
+        <div className={style.formHeader}>
+          <img src={logo_subir} alt="logo_subir" />
+          {/* Bloque de texto (Título + descripción) */}
+          <div className={style.formHeaderText}>
+            <h2 className={style.formTitle}>Formulario de aplicación a monitoría académica</h2>
+            <p className={style.formDescription}>
+              Diligencia este formulario para postularte a las convocatorias de monitorías.<br />
+              La información será revisada por el docente o coordinador responsable.<br />
+              La IA puede sugerir opciones, pero la decisión final será académica.
+            </p>
+          </div>
+        
+          {/* Botones a la derecha */}
+          <div className={style.formButtonsColumn}>
+            <button className={style.submitBtn}>Enviar aplicación</button>
+            <div className={style.aiSupportBox}>Con apoyo de IA</div>
+          </div>
+        </div>
+        
+        {/* Aquí vendría el resto del formulario */}
+      </section>
+        
 
       </main>
 

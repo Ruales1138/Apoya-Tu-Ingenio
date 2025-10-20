@@ -291,3 +291,113 @@ body {
   font-weight: 600;
 }
 
+/* --- FORMULARIO DE APLICACIÓN --- */
+.applicationForm {
+  background: #FBE9EEFF;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  font-family: 'Open Sans', sans-serif;
+  margin: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 50px;
+}
+
+/* Encabezado: bloque de texto + botones */
+.formHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px; /* menos espacio entre imagen y bloque de texto */
+}
+
+.formHeaderText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  flex-shrink: 1;
+  margin: 0; /* elimina margen extra si hay */
+}
+
+.formTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+  font-weight: 800;
+}
+
+.formDescription {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.formButtonsColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: auto; /* empuja los botones a la derecha */
+  flex-shrink: 0;
+  margin-right: 25px;
+}
+
+.submitBtn {
+  background-color: #C2262B;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s; 
+  font-family: Open Sans;
+}
+
+.submitBtn:hover {
+  background-color: #a81f24;
+}
+
+.aiSupportBtn {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.aiSupportBtn:hover {
+  background-color: #d5d5d5;
+}
+
+.formHeader img {
+  width: 60px;        /* un poco más pequeño para que no ocupe tanto espacio */
+  height: auto;
+  object-fit: contain;
+}
+
+.aiSupportBox {
+  background-color: #e0e0e0;
+  color: #333;
+  padding: 8px 16px;       /* un poquito más pequeño que el botón de enviar */
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  cursor: default;
+  display: inline-block;
+  margin-left: 30px;       /* lo desplaza un poco a la izquierda */
+  transition: background 0.2s;
+}
+
+
