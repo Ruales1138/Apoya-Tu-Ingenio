@@ -303,6 +303,7 @@ body {
   flex-direction: column;
   gap: 16px;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 /* Encabezado: bloque de texto + botones */
@@ -401,3 +402,49 @@ body {
 }
 
 
+/* Contenedor general de alertas */
+.alertsContainer {
+  display: flex;
+  flex-direction: column; /* apiladas verticalmente */
+  gap: 16px; /* espacio entre alertas */
+  margin: 25px; /* igual que los otros bloques */
+}
+
+/* Card de alerta */
+.alertBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px; /* espacio entre icono y texto */
+  background: #F3F4F6FF;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Icono de la alerta */
+.alertIcon {
+  font-size: 24px; 
+  flex-shrink: 0;
+}
+
+/* Bloque de texto de la alerta */
+.alertText {
+  text-align: left;  /* fuerza que el texto esté a la izquierda */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alertText h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: #222;
+}
+
+.alertText p {
+  font-size: 14px;
+  margin: 0;
+  color: #555;
+  line-height: 1.3;
+}
