@@ -9,6 +9,30 @@ function FormM() {
                 <img src={logo_udem} alt="Logo Universidad de Medellín" className={style.image} />
                 <img src={avatar} alt="Foto de perfil" className={style.avatar} />
             </header>
+            <h1 className={style.text}>Formulario de Aplicación a Monitorías Académicas </h1>
+
+            <section className={style.personalDataContainer}>
+                <h2 className={style.textPersonalData}>Datos Personales</h2>
+
+                <form>
+                    <div className={style.textbox}>
+                        <label className={style.textbox.label} htmlFor="fullName">
+                            Nombre Completo<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        
+                        <input className={style.textbox.input} id="fullName" type="text" placeholder="Ana María García" />
+                    </div>
+
+                    <div className={style.textboxright}>
+                        <label className={style.textbox.label} htmlFor="studentID">
+                            Código Estudiantil<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textbox.input} id="studentID" type="text" placeholder="202100567" />
+                    </div>
+                </form>
+            </section>
         </div>
     )
 };

@@ -29,11 +29,11 @@
   position: absolute; 
   top: 9px; 
   left: 12px; 
-  width: 175px; 
+  width: 150px; 
   height: 45px; 
   border-radius: 0px; 
 }
-/* Avatar */
+/* Avatar */ 
 .avatar {
   position: fixed;
   top: 1rem;
@@ -104,4 +104,155 @@
 /* Ajustes en pantallas pequeñas */
 @media (max-width: 600px) {
   .avatar { top: 0.75rem; right: 0.75rem; }
+}
+
+/* Title Text */
+.text {
+  position: fixed; 
+  top: 95px; 
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: Open Sans; /* Heading */
+  font-size: 25px; 
+  line-height: 40px; 
+  font-weight: 700; 
+  color: #C2262BFF; 
+}
+
+/* Personal Data Container  */
+.personalDataContainer {
+  position: fixed; 
+  top: 172px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 1208px; 
+  height: 450px; 
+  background: #FFFFFFFF; /* white */
+  border-radius: 10px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  box-shadow: 0px 0px 1px #171a1f0D, 0px 0px 2px #171a1f14; /* shadow-xs */
+}
+
+.textPersonalData {
+  position: absolute; 
+  top: 24px; 
+  left: 25px; 
+  font-family: Open Sans; /* Heading */
+  font-size: 24px; 
+  line-height: 32px; 
+  font-weight: 600; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+
+
+/* Textbox */
+.textbox {
+  position: absolute; 
+  top: 97px; 
+  left: 17px; 
+  opacity: 1;
+  text-align: left;
+}
+
+.textbox input {
+  width: 550px; 
+  height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Lato; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+}
+.textbox .label {
+  font-family: Lato; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+  display: block;              /* el label ocupa su propia línea */
+  margin-bottom: 6px;          /* espacio entre label e input */
+  text-align: left;
+}
+/* hover */
+.textbox input:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textbox input:focus {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.textbox input:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.textbox :disabled + .icon, .textbox :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
+}
+.required { color: #c2262b; margin-left: 2px; }
+
+
+.textboxright {
+  position: absolute; 
+  top: 97px; 
+  left: 612px; 
+  opacity: 1; 
+  text-align: left;
+}
+.textboxright input {
+  width: 550px; 
+  height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Lato; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+}
+.textboxright .label {
+  font-family: Lato; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+}
+/* hover */
+.textboxright input:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textboxright input:focus {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.textboxright input:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.textboxright :disabled + .icon, .textboxright :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
 }
