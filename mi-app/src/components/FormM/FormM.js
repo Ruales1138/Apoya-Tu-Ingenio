@@ -92,6 +92,53 @@ function FormM() {
                     </div>
 
                 </form>
+
+
+            </section>
+            <br></br>
+            <section className={style.containerExperience}>
+                <h2 className={style.textExperience}>Experiencia y Habilidades</h2>
+                <form>
+                    <p className={style.textQuestion}>¿Tienes experiencia previa como monitor?</p>
+
+                    <div className={style.radioGroup}>
+                        <div className={style.radioYes}>
+                            <div className={`${style["radioYes-item"]}`}>
+        
+                                <input 
+                                    type="radio" 
+                                    name="monitorExperience" 
+                                    value="sí" 
+                                    id="experienceYes"
+                                    className={style.radioInput} 
+                                />
+                                <label htmlFor="experienceYes">Sí</label>
+                            </div>
+                        </div>
+                        
+                        <div className={style.radioNo}>
+                            <div className={`${style["radioNo-item"]}`}>
+                                <input 
+                                    type="radio" 
+                                    name="monitorExperience" 
+                                    value="no" 
+                                    id="experienceNo" 
+                                    defaultChecked
+                                    className={style.radioInput} 
+                                />
+                                <label htmlFor="experienceNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={style.textarea}>
+                        <label className={style.textarea.label} htmlFor="experienceDetails">
+                            Si es así, por favor detalla tu experiencia y las asignaturas que has monitoreado:
+                        </label>
+                        <br></br>
+                        <input className={style.textarea.input} id="experienceDetails" type="text" placeholder="Detalla tu experiencia aquí..." />
+                    </div>
+                </form>
             </section>
         </div>
     )

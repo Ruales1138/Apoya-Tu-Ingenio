@@ -108,7 +108,7 @@
 
 /* Title Text */
 .text {
-  position: fixed; 
+  position: absolute; 
   top: 95px; 
   left: 50%;
   transform: translateX(-50%);
@@ -121,7 +121,7 @@
 
 /* Personal Data Container  */
 .personalDataContainer {
-  position: fixed; 
+  position: absolute; 
   top: 172px; 
   left: 50%; 
   transform: translateX(-50%);
@@ -535,4 +535,170 @@
 }
 .textboxTelephone :disabled + .icon, .textboxTelephone :disabled + .icon + .icon {
   fill: #171A1FFF; /* neutral-900 */
+}
+/* Container */
+.containerExperience {
+  position: absolute; 
+  top: 646px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 1208px; 
+  height: 310px; 
+  background: #FFFFFFFF; /* white */
+  border-radius: 10px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  box-shadow: 0px 0px 1px #171a1f0D, 0px 0px 2px #171a1f14; /* shadow-xs */
+}
+
+.textExperience {
+  position: absolute; 
+  top: 24px; 
+  left: 25px; 
+  font-family: Open Sans; /* Heading */
+  font-size: 24px; 
+  line-height: 32px; 
+  font-weight: 600; 
+  color: #171A1FFF; /* neutral-900 */
+}
+.textQuestion {
+  position: absolute; 
+  top: 95px; 
+  left: 17px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 14px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+
+/* Radio */
+.radioYes {
+  position: absolute; 
+  top: 130px; 
+  left: 20px;
+  display: flex; 
+  flex-direction: column; 
+  color: #171A1FFF; /* neutral-900 */
+  opacity: 1; 
+  gap: 5px; 
+}
+/* Radio - Disabled item */
+.radioYes .radioYes-item.disabled, .radioNo .radioNo-item.disabled {
+  opacity: 0.4; 
+}
+/* Radio - Item */
+.radioYes .radioYes-item, .radioNo .radioNo-item {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+  gap: 6px; 
+}
+/* Radio - Item - outer circle */
+.radioYes .radioYes-item .outer-circle, .radioNo .radioNo-item .outer-circle {
+  padding: 20px; 
+  background: #00000000; /* transparent */
+  border: #565D6DFF 1px solid; /* neutral-600 */
+  border-radius: 100%; 
+}
+/* Radio - Item - Inner circle */
+.radioYes .radioYes-item .inner-circle, .radioNo .radioNo-item .inner-circle {
+  width: 10px; 
+  height: 10px; 
+  border-radius: 100%; 
+}
+/* Radio - Item - Hovered outer circle */
+.radioYes .radioYes-item .outer-circle:hover, .radioNo .radioNo-item .outer-circle:hover {
+  border: #144B6CFF 1px solid; 
+}
+/* Radio - Item - Focused outer circle */
+.radioYes .radioYes-item .outer-circle:hover:active, .radioNo .radioNo-item .outer-circle:hover:active {
+  border: #144B6CFF 1px solid; 
+  box-shadow: 0px 0px 2px #144B6C33; 
+}
+/* Radio - Item - Selected outer circle */
+.radioYes .radioYes-item.selected .outer-circle, .radioNo .radioNo-item.selected .outer-circle {
+  background: #00000000; /* transparent */
+  border: #144B6CFF 1px solid; 
+}
+/* Radio - Item - Selected inner circle */
+.radioYes .radioYes-item.selected .inner-circle, .radioNo .radioNo-item.selected .inner-circle {
+  background: #144B6CFF; 
+}
+/* Radio item 1 */
+.radioYes .radioYes-item:nth-child(1), .radioNo .radioNo-item:nth-child(1) {
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 22px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+.radioNo {
+  position: absolute; 
+  top: 130px; 
+  left: 80px;
+  display: flex; 
+  flex-direction: column; 
+  color: #171A1FFF; /* neutral-900 */
+  opacity: 1; 
+  gap: 5px; 
+}
+.radioInput{
+  width: 20px;
+  height: 20px;
+}
+
+/* Textarea */
+.textarea {
+  position: absolute; 
+  top: 161px; 
+  left: 17px; 
+  opacity: 1;
+  text-align: left;
+
+}
+.textarea input {
+  width: 1147px; 
+  height: 99px; 
+  padding-top: 7px; 
+  padding-bottom: 7px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  color: #565D6DFF; /* neutral-600 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+}
+.textarea .label {
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+}
+
+/* hover */
+.textarea input:hover {
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textarea input:focus {
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+  box-shadow: 0px 0px 5px #dee1e633; 
+}
+/* disabled */
+.textarea input:disabled {
+  color: #565D6DFF; /* neutral-600 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
 }
