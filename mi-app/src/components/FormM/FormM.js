@@ -21,7 +21,7 @@ function FormM() {
                         </label>
                         <br></br>
                         
-                        <input className={style.textbox.input} id="fullName" type="text" placeholder="Ana María García" />
+                        <input className={style.textbox.input} id="fullName" type="text" />
                     </div>
 
                     <div className={style.textboxright}>
@@ -29,7 +29,7 @@ function FormM() {
                             Código Estudiantil<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textbox.input} id="studentID" type="text" placeholder="202100567" />
+                        <input className={style.textbox.input} id="studentID" type="text"  />
                     </div>
 
                     <div className={style.textProgram}>
@@ -48,7 +48,7 @@ function FormM() {
                             Semestre Actual<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textboxRightTwo.input} id="currentSemester" type="text" placeholder="Séptimo" />
+                        <input className={style.textboxRightTwo.input} id="currentSemester" type="text"  />
                     </div>
 
                     <div className={style.textboxAverage}>
@@ -56,7 +56,7 @@ function FormM() {
                             Promedio Acumulado (GPA)<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textboxAverage.input} id="averageGrade" type="text" placeholder="4.5" />
+                        <input className={style.textboxAverage.input} id="averageGrade" type="text"  />
                     </div>
 
                     <div className={style.textboxEmail}>
@@ -64,7 +64,7 @@ function FormM() {
                             Correo Institucional<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textboxEmail.input} id="email" type="text" placeholder="ejemplo@soyudemedellin.edu.co" />
+                        <input className={style.textboxEmail.input} id="email" type="text"  />
                     </div>
 
                     <div className={style.textboxTelephone}>
@@ -72,7 +72,7 @@ function FormM() {
                             Teléfono de Contacto<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textboxTelephone.input} id="telephone" type="text" placeholder="+57 3001234567" />
+                        <input className={style.textboxTelephone.input} id="telephone" type="text"  />
                     </div>
 
                     <div className={style.textboxEmail}>
@@ -80,7 +80,7 @@ function FormM() {
                             Correo Institucional<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textboxEmail.input} id="email" type="text" placeholder="ejemplo@soyudemedellin.edu.co" />
+                        <input className={style.textboxEmail.input} id="email" type="text"  />
                     </div>
 
                     <div className={style.textboxTelephone}>
@@ -88,7 +88,7 @@ function FormM() {
                             Teléfono de Contacto<span className={style.required}>*</span>
                         </label>
                         <br></br>
-                        <input className={style.textboxTelephone.input} id="telephone" type="text" placeholder="+57 3001234567" />
+                        <input className={style.textboxTelephone.input} id="telephone" type="text"  />
                     </div>
 
                 </form>
@@ -136,7 +136,7 @@ function FormM() {
                             Si es así, por favor detalla tu experiencia y las asignaturas que has monitoreado:
                         </label>
                         <br></br>
-                        <input className={style.textarea.input} id="experienceDetails" type="text" placeholder="Detalla tu experiencia aquí..." />
+                        <input className={style.textarea.input} id="experienceDetails" type="text"  />
                     </div>
                 </form>
             </section>
