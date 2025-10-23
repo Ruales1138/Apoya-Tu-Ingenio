@@ -2,12 +2,17 @@ const app = require('./app');
 const { sequelize } = require('./db');
 const PORT = process.env.PORT || 3001;
 
+// 👇 importa los modelos para que Sequelize los registre
+require("./models/User");
+require("./models/Convocatoria");
+
 (async () => {
   try {
     await sequelize.authenticate();
     console.log('✅ Conexión establecida correctamente con la base de datos');
 
-    await sequelize.sync({ alter: true }); // o { force: false } si prefieres
+    // sincroniza todos los modelos importados
+    await sequelize.sync({ alter: true }); // usa { force: true } solo si quieres borrar y recrear
     console.log('✅ Base de datos sincronizada correctamente');
 
     app.listen(PORT, () => {

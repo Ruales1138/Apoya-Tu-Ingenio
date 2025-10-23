@@ -21,6 +21,19 @@ function Student() {
   const headerHeightRef = useRef(64);
   const ignoreUntilRef = useRef(0);
 
+  // Estado para convocatorias
+  const [convocatorias, setConvocatorias] = useState([]);
+
+  // Llamada al backend
+  useEffect(() => {
+    fetch("http://localhost:3001/api/convocatorias")
+      .then((res) => res.json())
+      .then((data) => {
+        setConvocatorias(data.convocatorias || []);
+      })
+      .catch((err) => console.error("Error cargando convocatorias:", err));
+  }, []);
+
   // compute anchors/boundaries used by the scroll handler. Extracted so
   // it can be called after programmatic scrolling to keep positions in sync.
   const computeAnchors = () => {
@@ -201,27 +214,20 @@ function Student() {
         <section id="convocatorias">
           <h2>Convocatorias Activas</h2>
           <div className={style.cardsContainer}>
-            <Card
-              imagen={portada_1}
-              titulo="Monitoría de Programación I"
-              curso="Ingeniería de Sistemas"
-              semestre="2024-1"
-              fecha="15/05/2024"
-            />
-            <Card
-              imagen={portada_2}
-              titulo="Monitoría de Cálculo Diferencial"
-              curso="Matemáticas Aplicadas"
-              semestre="2024-1"
-              fecha="20/05/2024"
-            />
-            <Card
-              imagen={portada_3}
-              titulo="Monitoría de Circuitos Eléctricos"
-              curso="Ingeniería Electrónica"
-              semestre="2024-1"
-              fecha="22/05/2024"
-            />
+            {convocatorias.length > 0 ? (
+              convocatorias.map((conv) => (
+                <Card
+                  key={conv.id}
+                  titulo={conv.titulo}
+                  descripcion={conv.descripcion}
+                  materia={conv.materia}
+                  estado={conv.estado}
+                  fechaFin={conv.fechaFin}
+                />
+              ))
+            ) : (
+              <p>No hay convocatorias activas en este momento.</p>
+            )}
           </div>
         </section>
 
