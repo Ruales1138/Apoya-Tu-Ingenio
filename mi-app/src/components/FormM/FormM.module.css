@@ -162,7 +162,7 @@
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
-  font-family: Lato; 
+  font-family: Open Sans; 
   font-size: 14px; 
   line-height: 22px; 
   font-weight: 400; 
@@ -174,7 +174,7 @@
   outline: none; 
 }
 .textbox .label {
-  font-family: Lato; 
+  font-family: Open Sans; 
   font-size: 14px; 
   line-height: 22px; 
   font-weight: 500; 
@@ -203,8 +203,8 @@
 .textbox :disabled + .icon, .textbox :disabled + .icon + .icon {
   fill: #171A1FFF; /* neutral-900 */
 }
-.required { color: #c2262b; margin-left: 2px; }
-
+.required { color: #c2262b; margin-left: 2px; 
+}
 
 .textboxright {
   position: absolute; 
@@ -218,7 +218,7 @@
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
-  font-family: Lato; 
+  font-family: Open Sans; 
   font-size: 14px; 
   line-height: 22px; 
   font-weight: 400; 
@@ -230,7 +230,7 @@
   outline: none; 
 }
 .textboxright .label {
-  font-family: Lato; 
+  font-family: Open Sans; 
   font-size: 14px; 
   line-height: 22px; 
   font-weight: 500; 
@@ -254,5 +254,285 @@
   border-color: #DEE1E6FF; /* neutral-300 */
 }
 .textboxright :disabled + .icon, .textboxright :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
+}
+
+.textProgram {
+  position: absolute; 
+  top: 189px; 
+  left: 17px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 14px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+/* Dropdown Button */
+.dropdown {
+  position: absolute; 
+  top: 25px; 
+  left: 4px; 
+  opacity: 1; 
+}
+.dropdown {
+  width: 550px; 
+  height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; /* espacio para el ícono del select */
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+  /* quitar estilos nativos del select para poder personalizarlo */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none; /* evita flechas dobles en algunos navegadores */
+}
+
+.dropdown svg {
+  position: absolute; 
+  top: 12px; 
+  right: 12px; 
+  width: 16px; 
+  height: 16px; 
+  fill: #171A1FFF; /* neutral-900 */
+}
+/* hover */
+.dropdown:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.dropdown:focus {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.dropdown:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.dropdown :disabled + .icon, .dropdown :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
+}
+
+/* TextboxRightTwo */
+.textboxRightTwo {
+  position: absolute; 
+  top: 185px; 
+  left: 612px; 
+  opacity: 1; 
+  text-align: left; 
+  }
+
+  .textboxRightTwo input {
+    width: 550px; 
+    height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+}
+.textboxRightTwo .label {
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500;
+}
+/* hover */
+.textboxRightTwo input:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textboxRightTwo input:focused {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.textboxRightTwo input:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.textboxRightTwo :disabled + .icon, .textboxRightTwo :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
+}
+
+/* Textbox */
+.textboxAverage {
+  position: absolute; 
+  top: 273px; 
+  left: 17px; 
+  opacity: 1; 
+  text-align: left;
+}
+.textboxAverage input {
+  width: 550px; 
+  height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+}
+.textboxAverage .label {
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+}
+/* hover */
+.textboxAverage input:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textboxAverage input:focus {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.textboxAverage input:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.textboxAverage :disabled + .icon, .textboxAverage :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
+}
+
+/* Textbox */
+.textboxEmail {
+  position: absolute; 
+  top: 273px; 
+  left: 612px; 
+  opacity: 1;
+  text-align: left; 
+}
+.textboxEmail input {
+  width: 550px; 
+  height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+}
+.textboxEmail .label {
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+}
+/* hover */
+.textboxEmail input:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textboxEmail input:focus {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.textboxEmail input:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.textboxEmail :disabled + .icon, .textboxEmail :disabled + .icon + .icon {
+  fill: #171A1FFF; /* neutral-900 */
+}
+
+/* Textbox */
+.textboxTelephone {
+  position: absolute; 
+  top: 361px; 
+  left: 17px; 
+  opacity: 1;
+  text-align: left; 
+}
+.textboxTelephone input {
+  width: 550px; 
+  height: 49px; 
+  padding-left: 12px; 
+  padding-right: 12px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 400; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  outline: none; 
+}
+.textboxTelephone .label {
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+}
+/* hover */
+.textboxTelephone input:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* focused */
+.textboxTelephone input:focused {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* disabled */
+.textboxTelephone input:disabled {
+  color: #171A1FFF; /* neutral-900 */
+  background: #DEE1E6FF; /* neutral-300 */
+  border-color: #DEE1E6FF; /* neutral-300 */
+}
+.textboxTelephone :disabled + .icon, .textboxTelephone :disabled + .icon + .icon {
   fill: #171A1FFF; /* neutral-900 */
 }

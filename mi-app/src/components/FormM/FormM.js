@@ -31,6 +31,66 @@ function FormM() {
                         <br></br>
                         <input className={style.textbox.input} id="studentID" type="text" placeholder="202100567" />
                     </div>
+
+                    <div className={style.textProgram}>
+                        <label>Programa Académico<span className={style.required}>*</span></label>
+
+                        <select className={style.dropdown}>
+                            <option value="">Selecionar</option>
+                            <option value="Ingeniería de Sistemas">Ingeniería de Sistemas</option>
+                            <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                            <option value="Ingeniería Electrónica">Ingeniería Electrónica</option>
+                        </select>
+                    </div>
+
+                    <div className={style.textboxRightTwo}>
+                        <label className={style.textboxRightTwo.label} htmlFor="currentSemester">
+                            Semestre Actual<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textboxRightTwo.input} id="currentSemester" type="text" placeholder="Séptimo" />
+                    </div>
+
+                    <div className={style.textboxAverage}>
+                        <label className={style.textboxAverage.label} htmlFor="averageGrade">
+                            Promedio Acumulado (GPA)<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textboxAverage.input} id="averageGrade" type="text" placeholder="4.5" />
+                    </div>
+
+                    <div className={style.textboxEmail}>
+                        <label className={style.textboxEmail.label} htmlFor="email">
+                            Correo Institucional<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textboxEmail.input} id="email" type="text" placeholder="ejemplo@soyudemedellin.edu.co" />
+                    </div>
+
+                    <div className={style.textboxTelephone}>
+                        <label className={style.textboxTelephone.label} htmlFor="telephone">
+                            Teléfono de Contacto<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textboxTelephone.input} id="telephone" type="text" placeholder="+57 3001234567" />
+                    </div>
+
+                    <div className={style.textboxEmail}>
+                        <label className={style.textboxEmail.label} htmlFor="email">
+                            Correo Institucional<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textboxEmail.input} id="email" type="text" placeholder="ejemplo@soyudemedellin.edu.co" />
+                    </div>
+
+                    <div className={style.textboxTelephone}>
+                        <label className={style.textboxTelephone.label} htmlFor="telephone">
+                            Teléfono de Contacto<span className={style.required}>*</span>
+                        </label>
+                        <br></br>
+                        <input className={style.textboxTelephone.input} id="telephone" type="text" placeholder="+57 3001234567" />
+                    </div>
+
                 </form>
             </section>
         </div>
