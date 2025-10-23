@@ -88,16 +88,19 @@
   color: #2d2d2d;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.2s;
+  /* reduce transition scope to color only to avoid background painting flicker */
+  transition: color 0.12s ease;
 }
 
 .menu li:hover {
-  background-color: #f4f4f4;
+  background-color: rgba(244,244,244,0.7);
 }
 
-.active {
+/* use a specific selector to style active list items to avoid conflicts */
+.menu li.active {
   background-color: #f1f1f1;
   font-weight: 600;
+  color: #C2262B;
 }
 
 /* --- LOGO UNIVERSIDAD --- */
@@ -120,6 +123,24 @@
   flex: 1;
   background-color: #fafafa;
   min-height: calc(100vh - 64px - 50px); /* ajusta para el footer */
+}
+
+/* Ajustar scroll y espaciado de secciones */
+section {
+  /* Use the header height defined at runtime; fallback to 64px */
+  scroll-margin-top: calc(var(--header-height, 64px) + 12px);
+  padding: 20px 25px; /* Alineado con los márgenes existentes */
+  position: relative;
+}
+
+.content h2 {
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 10px; /* Añadido para mejor espaciado */
+  margin-bottom: 20px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  color: #333;
 }
 
 /* --- FOOTER --- */
@@ -317,14 +338,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 4px;
+  gap: 0px; /* no gap between title and description */
   flex-shrink: 1;
   margin: 0; /* elimina margen extra si hay */
 }
 
 .formTitle {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   color: #222;
   margin: 0;
   font-weight: 800;
@@ -333,10 +354,10 @@ body {
 .formDescription {
   font-size: 14px;
   color: #444;
-  line-height: 1.4;
+  line-height: 1.2;
   margin: 0;
   text-align: left;
-  margin-left: 30px;
+  margin-left: 0; /* no left indent so text sits directly under title */
 }
 
 .formButtonsColumn {

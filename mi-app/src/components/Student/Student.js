@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import style from "./Student.module.css";
 import logo_app from "../../images/logo_app.png";
 import perfil from "../../images/perfil.png";
@@ -11,6 +11,136 @@ import logo_subir from "../../images/logo_subir.png";
 import { Link } from "react-router-dom";
 
 function Student() {
+  const [activeSection, setActiveSection] = useState('convocatorias');
+  const activeSectionRef = useRef(activeSection);
+  const tickingRef = useRef(false);
+  const isAutoScrollingRef = useRef(false);
+  // unused pending/debounce refs removed (we use deterministic boundaries)
+  const anchorsRef = useRef([]);
+  const boundariesRef = useRef([]);
+  const headerHeightRef = useRef(64);
+  const ignoreUntilRef = useRef(0);
+
+  // compute anchors/boundaries used by the scroll handler. Extracted so
+  // it can be called after programmatic scrolling to keep positions in sync.
+  const computeAnchors = () => {
+    const header = document.querySelector('header');
+    const headerHeight = header ? header.offsetHeight : 64;
+    headerHeightRef.current = headerHeight;
+    try {
+      document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+    } catch (e) {}
+
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  // use offsetTop (document-relative) which is stable during smooth scroll
+  const anchors = sections.map((s) => ({ id: s.id, top: s.offsetTop }));
+    anchorsRef.current = anchors;
+
+    const boundaries = [];
+    for (let i = 0; i < anchors.length - 1; i++) {
+      boundaries.push((anchors[i].top + anchors[i + 1].top) / 2);
+    }
+    boundariesRef.current = boundaries;
+  };
+
+  useEffect(() => {
+    // Compute anchors (absolute tops) and boundaries (midpoints) for sections
+    computeAnchors();
+    window.addEventListener('resize', computeAnchors);
+    // recompute after fonts/images load (small delay)
+    window.setTimeout(computeAnchors, 500);
+
+    return () => window.removeEventListener('resize', computeAnchors);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (!element) return;
+
+    // use scrollIntoView so browser respects scroll-margin-top (which we set via CSS var)
+    // mark as programmatic scroll so the scroll listener/observer won't override
+  isAutoScrollingRef.current = true;
+  // compute final scroll top so the section sits just below the header
+  const header = document.querySelector('header');
+  const headerHeight = header ? header.offsetHeight : headerHeightRef.current || 64;
+  const targetTop = element.offsetTop - headerHeight - 12; // align with scroll-margin-top
+  // set an ignore window to avoid onScroll handling flurries while browser animates
+  ignoreUntilRef.current = Date.now() + 1200;
+  window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    // update active immediately for UI feedback
+    setActiveSection(sectionId);
+    activeSectionRef.current = sectionId;
+
+    // monitor the scroll position and re-enable manual detection when
+    // the browser has completed the smooth scroll (or after a max wait)
+    const start = Date.now();
+    const maxWait = 2000; // ms
+  const tolerance = 12; // px
+  const checkInterval = 40; // ms
+    const checkId = window.setInterval(() => {
+      const cur = window.pageYOffset;
+        if (Math.abs(cur - targetTop) <= tolerance || Date.now() - start > maxWait) {
+        clearInterval(checkId);
+        try {
+          computeAnchors();
+        } catch (e) {}
+        isAutoScrollingRef.current = false;
+        // keep a short post-scroll lock to avoid immediate scroll-handler flips
+        ignoreUntilRef.current = Date.now() + 350;
+        // final commit of active section
+        setActiveSection(sectionId);
+        activeSectionRef.current = sectionId;
+      }
+    }, checkInterval);
+  };
+
+  // Sync active section while user scrolls manually: choose the section whose
+  // top is closest to the header position. Use requestAnimationFrame for perf.
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    if (!sections.length) return;
+
+    const onScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      requestAnimationFrame(() => {
+        // skip updates while programmatic scrolling or within ignore window
+        if (isAutoScrollingRef.current || Date.now() < (ignoreUntilRef.current || 0)) {
+          tickingRef.current = false;
+          return;
+        }
+
+        const headerHeight = headerHeightRef.current || 64;
+        // adjustedY is the document Y that corresponds to the line under the header
+        const adjustedY = window.pageYOffset + headerHeight + 12; // position under header
+
+        const anchors = anchorsRef.current;
+        const boundaries = boundariesRef.current;
+        if (!anchors || !anchors.length) {
+          tickingRef.current = false;
+          return;
+        }
+
+  let index = boundaries.findIndex((b) => adjustedY < b);
+        if (index === -1) index = anchors.length - 1;
+
+        const id = anchors[index].id;
+        if (id && activeSectionRef.current !== id) {
+          setActiveSection(id);
+          activeSectionRef.current = id;
+        }
+
+        tickingRef.current = false;
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // run once to set initial active
+    onScroll();
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className={style.pageContainer}>
       {/* Barra superior */}
@@ -31,9 +161,24 @@ function Student() {
       {/* Barra lateral */}
       <aside className={style.sidebar}>
         <ul className={style.menu}>
-          <li>📢 Convocatorias</li>
-          <li>📄 Mis Aplicaciones</li>
-          <li>📊 Indicadores</li>
+          <li 
+            onClick={() => scrollToSection('convocatorias')}
+            className={activeSection === 'convocatorias' ? style.active : ''}
+          >
+            📢 Convocatorias
+          </li>
+          <li 
+            onClick={() => scrollToSection('aplicaciones')}
+            className={activeSection === 'aplicaciones' ? style.active : ''}
+          >
+            📄 Mis Aplicaciones
+          </li>
+          <li 
+            onClick={() => scrollToSection('indicadores')}
+            className={activeSection === 'indicadores' ? style.active : ''}
+          >
+            📊 Indicadores
+          </li>
         </ul>
 
         {/* Logo Universidad de Medellín */}
@@ -57,124 +202,134 @@ function Student() {
         </div>
 
         {/* Convocatorias */}
-        <h2>Convocatorias Activas</h2>
-        <div className={style.cardsContainer}>
-          <Card
-            imagen={portada_1}
-            titulo="Monitoría de Programación I"
-            curso="Ingeniería de Sistemas"
-            semestre="2024-1"
-            fecha="15/05/2024"
-          />
-          <Card
-            imagen={portada_2}
-            titulo="Monitoría de Cálculo Diferencial"
-            curso="Matemáticas Aplicadas"
-            semestre="2024-1"
-            fecha="20/05/2024"
-          />
-          <Card
-            imagen={portada_3}
-            titulo="Monitoría de Circuitos Eléctricos"
-            curso="Ingeniería Electrónica"
-            semestre="2024-1"
-            fecha="22/05/2024"
-          />
-        </div>
+        <section id="convocatorias">
+          <h2>Convocatorias Activas</h2>
+          <div className={style.cardsContainer}>
+            <Card
+              imagen={portada_1}
+              titulo="Monitoría de Programación I"
+              curso="Ingeniería de Sistemas"
+              semestre="2024-1"
+              fecha="15/05/2024"
+            />
+            <Card
+              imagen={portada_2}
+              titulo="Monitoría de Cálculo Diferencial"
+              curso="Matemáticas Aplicadas"
+              semestre="2024-1"
+              fecha="20/05/2024"
+            />
+            <Card
+              imagen={portada_3}
+              titulo="Monitoría de Circuitos Eléctricos"
+              curso="Ingeniería Electrónica"
+              semestre="2024-1"
+              fecha="22/05/2024"
+            />
+          </div>
+        </section>
 
         {/* Mis aplicaciones */}
-        <h2>Mis Aplicaciones</h2>
-        <div className={style.applicationsTable}>
-          <table className={style.table}>
-            <thead>
-              <tr>
-                <th>Convocatoria</th>
-                <th>Curso</th>
-                <th>Fecha de Aplicación</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Monitoría de Programación I</td>
-                <td>Ingeniería de Sistemas</td>
-                <td>01/05/2024</td>
-                <td className={style.estadoAceptada}>Aceptada</td>
-              </tr>
-              <tr>
-                <td>Monitoría de Base de Datos</td>
-                <td>Ciencias de la Computación</td>
-                <td>28/04/2024</td>
-                <td className={style.estadoPendiente}>Pendiente</td>
-              </tr>
-              <tr>
-                <td>Monitoría de Estadística</td>
-                <td>Matemáticas</td>
-                <td>25/04/2024</td>
-                <td className={style.estadoRechazada}>Rechazada</td>
-              </tr>
-              <tr>
-                <td>Monitoría de Física II</td>
-                <td>Ingeniería Civil</td>
-                <td>22/04/2024</td>
-                <td className={style.estadoPendiente}>Pendiente</td>
-              </tr>
-              <tr>
-                <td>Monitoría de Redes I</td>
-                <td>Ingeniería de Telecomunicaciones</td>
-                <td>18/04/2024</td>
-                <td className={style.estadoAceptada}>Aceptada</td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
-
-      {/* Formulario de aplicación */}
-      <section className={style.applicationForm}>
-        <div className={style.formHeader}>
-          <img src={logo_subir} alt="logo_subir" />
-          {/* Bloque de texto (Título + descripción) */}
-          <div className={style.formHeaderText}>
-            <h2 className={style.formTitle}>Formulario de aplicación a monitoría académica</h2>
-            <p className={style.formDescription}>
-              Diligencia este formulario para postularte a las convocatorias de monitorías.<br />
-              La información será revisada por el docente o coordinador responsable.<br />
-              La IA puede sugerir opciones, pero la decisión final será académica.
-            </p>
-          </div>
-        
-          {/* Botones a la derecha */}
-          <div className={style.formButtonsColumn}>
-            <Link to="/form" className={style.submitBtn}>Enviar aplicación</Link>
-            <div className={style.aiSupportBox}>Con apoyo de IA</div>
-          </div>
+        <section id="aplicaciones">
+          <h2>Mis Aplicaciones</h2>
+          <div className={style.applicationsTable}>
+            <table className={style.table}>
+              <thead>
+                <tr>
+                  <th>Convocatoria</th>
+                  <th>Curso</th>
+                  <th>Fecha de Aplicación</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Monitoría de Programación I</td>
+                  <td>Ingeniería de Sistemas</td>
+                  <td>01/05/2024</td>
+                  <td className={style.estadoAceptada}>Aceptada</td>
+                </tr>
+                <tr>
+                  <td>Monitoría de Base de Datos</td>
+                  <td>Ciencias de la Computación</td>
+                  <td>28/04/2024</td>
+                  <td className={style.estadoPendiente}>Pendiente</td>
+                </tr>
+                <tr>
+                  <td>Monitoría de Estadística</td>
+                  <td>Matemáticas</td>
+                  <td>25/04/2024</td>
+                  <td className={style.estadoRechazada}>Rechazada</td>
+                </tr>
+                <tr>
+                  <td>Monitoría de Física II</td>
+                  <td>Ingeniería Civil</td>
+                  <td>22/04/2024</td>
+                  <td className={style.estadoPendiente}>Pendiente</td>
+                </tr>
+                <tr>
+                  <td>Monitoría de Redes I</td>
+                  <td>Ingeniería de Telecomunicaciones</td>
+                  <td>18/04/2024</td>
+                  <td className={style.estadoAceptada}>Aceptada</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
-      </section>
+        </section>
 
-      
-      {/* Alertas */}
-      <h2>Alertas importantes</h2>
-      <div className={style.alertsContainer}>
-        {/* Primer alerta */}
-        <div className={style.alertBox}>
-          <div className={style.alertIcon}>🔔</div>
-          <div className={style.alertText}>
-            <h3>¡Alerta!</h3>
-            <p>Tienes 2 tareas pendientes para la monitoría de Programación I.</p>
+        {/* Indicadores */}
+        <section id="indicadores">
+          <h2>Indicadores</h2>
+          <div className={style.indicadoresContainer}>
+            {/* Add your indicators content here */}
           </div>
-        </div>
+        </section>
 
-        {/* Segunda alerta */}
-        <div className={style.alertBox}>
-          <div className={style.alertIcon}>🔔</div>
-          <div className={style.alertText}>
-            <h3>¡Alerta!</h3>
-            <p>Se ha publicado una nueva convocatoria para Química Orgánica.</p>
+        {/* Formulario de aplicación */}
+        <section className={style.applicationForm}>
+          <div className={style.formHeader}>
+            <img src={logo_subir} alt="logo_subir" />
+            {/* Bloque de texto (Título + descripción) */}
+            <div className={style.formHeaderText}>
+              <h2 className={style.formTitle}>Formulario de aplicación a monitoría académica</h2>
+              <p className={style.formDescription}>
+                Diligencia este formulario para postularte a las convocatorias de monitorías.<br />
+                La información será revisada por el docente o coordinador responsable.<br />
+                La IA puede sugerir opciones, pero la decisión final será académica.
+              </p>
+            </div>
+          
+            {/* Botones a la derecha */}
+            <div className={style.formButtonsColumn}>
+              <Link to="/form" className={style.submitBtn}>Enviar aplicación</Link>
+              <div className={style.aiSupportBox}>Con apoyo de IA</div>
+            </div>
           </div>
-        </div>
-      </div>
+        </section>
 
         
+        {/* Alertas */}
+        <h2>Alertas importantes</h2>
+        <div className={style.alertsContainer}>
+          {/* Primer alerta */}
+          <div className={style.alertBox}>
+            <div className={style.alertIcon}>🔔</div>
+            <div className={style.alertText}>
+              <h3>¡Alerta!</h3>
+              <p>Tienes 2 tareas pendientes para la monitoría de Programación I.</p>
+            </div>
+          </div>
+
+          {/* Segunda alerta */}
+          <div className={style.alertBox}>
+            <div className={style.alertIcon}>🔔</div>
+            <div className={style.alertText}>
+              <h3>¡Alerta!</h3>
+              <p>Se ha publicado una nueva convocatoria para Química Orgánica.</p>
+            </div>
+          </div>
+        </div>
 
       </main>
 
