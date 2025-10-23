@@ -1,12 +1,13 @@
+// Register.jsx
 import React, { useState } from "react";
-import style from "./Login.module.css";
-import logo from "../../images/logo_udem.png";
-import logo_app_2 from "../../images/logo_app_2.png";
+import style from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Register() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
   const [role, setRole] = useState("Estudiante");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,26 +17,27 @@ function Login() {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    if (password !== confirm) {
+      setError("Las contraseñas no coinciden");
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await fetch("http://localhost:3001/api/auth/login", {
+      const res = await fetch("http://localhost:3001/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password, role }),
+        body: JSON.stringify({ username, email, password, role }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Error en el inicio de sesión");
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
-      if (data.user.role === "Estudiante") navigate("/student");
-      else if (data.user.role === "Docente") navigate("/teacher");
-      else navigate("/");
+      if (!res.ok) throw new Error(data.message || "Error en el registro");
+
+      // Redirigir al login tras registro exitoso
+      navigate("/");
     } catch (err) {
       console.error(err);
-      const userMessage =
-        err.message && err.message.includes("Failed to fetch")
-          ? "No se pudo conectar con el servidor. Verifica tu conexión e inténtalo de nuevo."
-          : err.message || "Error al iniciar sesión. Inténtalo de nuevo.";
-      setError(userMessage);
+      setError(err.message || "Error al registrarse. Inténtalo de nuevo.");
       setLoading(false);
     }
   };
@@ -43,11 +45,7 @@ function Login() {
   return (
     <div className={style.container}>
       <div className={style.card}>
-        <img src={logo} alt="Universidad de Medellín" className={style.logo} />
-        <img src={logo_app_2} alt="Logo" className={style.logoApp} />
-
-        <h2 className={style.title}>ApoyaTuIngenio</h2>
-        <h3 className={style.subtitle}>Iniciar Sesión</h3>
+        <h3 className={style.subtitle}>Crear Cuenta</h3>
 
         <form onSubmit={handleSubmit} className={style.form}>
           <div className={style.formGroup}>
@@ -58,6 +56,18 @@ function Login() {
               onChange={(e) => setUsername(e.target.value)}
               type="text"
               placeholder="Ingrese su nombre de usuario"
+              required
+            />
+          </div>
+
+          <div className={style.formGroup}>
+            <label>Email</label>
+            <input
+              className={style.input}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Ingrese su correo electrónico"
               required
             />
           </div>
@@ -75,6 +85,18 @@ function Login() {
           </div>
 
           <div className={style.formGroup}>
+            <label>Confirmar Contraseña</label>
+            <input
+              className={style.input}
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
+              type="password"
+              placeholder="Repita su contraseña"
+              required
+            />
+          </div>
+
+          <div className={style.formGroup}>
             <label>Rol</label>
             <select
               className={style.select}
@@ -83,24 +105,22 @@ function Login() {
             >
               <option>Estudiante</option>
               <option>Docente</option>
-              <option>Administrador</option>
             </select>
           </div>
 
           {error && <div className={style.error}>{error}</div>}
 
           <button type="submit" className={style.button} disabled={loading}>
-            {loading ? "Ingresando..." : "Ingresar"}
+            {loading ? "Registrando..." : "Registrarme"}
           </button>
         </form>
 
         <div className={style.footer}>
-          <a href="#">¿Olvidó su contraseña?</a>
-          <a onClick={() => navigate("/register")}>Crear cuenta</a>
+          <a onClick={() => navigate("/")}>¿Ya tienes cuenta? Inicia sesión</a>
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;
