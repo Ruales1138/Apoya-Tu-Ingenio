@@ -129,7 +129,7 @@
 section {
   /* Use the header height defined at runtime; fallback to 64px */
   scroll-margin-top: calc(var(--header-height, 64px) + 12px);
-  padding: 20px 25px; /* Alineado con los márgenes existentes */
+  padding: 5px 25px; /* Alineado con los márgenes existentes */
   position: relative;
 }
 
@@ -257,7 +257,6 @@ body {
 /* Alinear título "Convocatorias Activas" a la izquierda */
 .content h2 {
   text-align: left;
-  margin-left: 30px;
 }
 
 
@@ -265,11 +264,11 @@ body {
 .applicationsTable {
   margin-top: 40px;
   background-color: #fff;
-  padding: 20px;
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   font-family: 'Open Sans', sans-serif;
   margin: 25px;
+  padding: 20px;
 }
 
 .applicationsTable h3 {
@@ -429,7 +428,7 @@ body {
   display: flex;
   flex-direction: column; /* apiladas verticalmente */
   gap: 16px; /* espacio entre alertas */
-  margin: 25px; /* igual que los otros bloques */
+  margin: 25px;
 }
 
 /* Card de alerta */

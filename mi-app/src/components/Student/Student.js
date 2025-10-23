@@ -173,12 +173,6 @@ function Student() {
           >
             📄 Mis Aplicaciones
           </li>
-          <li 
-            onClick={() => scrollToSection('indicadores')}
-            className={activeSection === 'indicadores' ? style.active : ''}
-          >
-            📊 Indicadores
-          </li>
         </ul>
 
         {/* Logo Universidad de Medellín */}
@@ -190,16 +184,18 @@ function Student() {
       {/* Contenido principal */}
       <main className={style.content}>
         {/* Banner de bienvenida */}
-        <div className={style.welcomeBanner}>
-          <div className={style.bannerLeft}>
-            <div className={style.welcomeIcon}>🏅</div>
-            <div className={style.welcomeText}>
-              <h2>¡Bienvenido, Susana Morales!</h2>
-              <p>Monitora activa en 1 convocatoria. ¡Revisa nuevas oportunidades!</p>
+        <section id="bienvenida">
+          <div className={style.welcomeBanner}>
+            <div className={style.bannerLeft}>
+              <div className={style.welcomeIcon}>🏅</div>
+              <div className={style.welcomeText}>
+                <h2>¡Bienvenido, Susana Morales!</h2>
+                <p>Monitora activa en 1 convocatoria. ¡Revisa nuevas oportunidades!</p>
+              </div>
             </div>
+            <button className={style.viewProfileBtn}>Ver perfil</button>
           </div>
-          <button className={style.viewProfileBtn}>Ver perfil</button>
-        </div>
+        </section>
 
         {/* Convocatorias */}
         <section id="convocatorias">
@@ -278,39 +274,33 @@ function Student() {
         </div>
         </section>
 
-        {/* Indicadores */}
-        <section id="indicadores">
-          <h2>Indicadores</h2>
-          <div className={style.indicadoresContainer}>
-            {/* Add your indicators content here */}
-          </div>
-        </section>
 
   {/* Formulario movido a MoreInfo component. Se muestra en /info */}
 
         
         {/* Alertas */}
-        <h2>Alertas importantes</h2>
-        <div className={style.alertsContainer}>
-          {/* Primer alerta */}
-          <div className={style.alertBox}>
-            <div className={style.alertIcon}>🔔</div>
-            <div className={style.alertText}>
-              <h3>¡Alerta!</h3>
-              <p>Tienes 2 tareas pendientes para la monitoría de Programación I.</p>
+        <section id="alertas"> <h2>Alertas importantes</h2>
+          <div className={style.alertsContainer}>
+            {/* Primer alerta */}
+            <div className={style.alertBox}>
+              <div className={style.alertIcon}>🔔</div>
+              <div className={style.alertText}>
+                <h3>¡Alerta!</h3>
+                <p>Tienes 2 tareas pendientes para la monitoría de Programación I.</p>
+              </div>
+            </div>
+
+            {/* Segunda alerta */}
+            <div className={style.alertBox}>
+              <div className={style.alertIcon}>🔔</div>
+              <div className={style.alertText}>
+                <h3>¡Alerta!</h3>
+                <p>Se ha publicado una nueva convocatoria para Química Orgánica.</p>
+              </div>
             </div>
           </div>
-
-          {/* Segunda alerta */}
-          <div className={style.alertBox}>
-            <div className={style.alertIcon}>🔔</div>
-            <div className={style.alertText}>
-              <h3>¡Alerta!</h3>
-              <p>Se ha publicado una nueva convocatoria para Química Orgánica.</p>
-            </div>
-          </div>
-        </div>
-
+        </section>
+        
       </main>
 
       {/* Footer */}
