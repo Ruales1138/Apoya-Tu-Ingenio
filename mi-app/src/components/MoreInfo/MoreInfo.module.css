@@ -1,0 +1,83 @@
+/* Styles for the moved application form */
+.applicationForm {
+	background: #FBE9EEFF;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	font-family: 'Open Sans', sans-serif;
+	margin: 25px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.formHeader {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.formHeaderText {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0px;
+	flex-shrink: 1;
+	margin: 0;
+}
+
+.formTitle {
+	font-size: 20px;
+	font-weight: 800;
+	color: #222;
+	margin: 0;
+}
+
+.formDescription {
+	font-size: 14px;
+	color: #444;
+	line-height: 1.2;
+	margin: 0;
+	text-align: left;
+}
+
+.formButtonsColumn {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-left: auto;
+	flex-shrink: 0;
+	margin-right: 25px;
+}
+
+.submitBtn {
+	background-color: #C2262B;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s; 
+	font-family: Open Sans;
+	text-decoration: none;
+}
+
+.submitBtn:hover { background-color: #a81f24; }
+
+.aiSupportBox {
+	background-color: #e0e0e0;
+	color: #333;
+	padding: 8px 16px;
+	border-radius: 20px;
+	font-size: 12px;
+	font-weight: 500;
+	text-align: center;
+	cursor: default;
+	display: inline-block;
+	transition: background 0.2s;
+}
+
