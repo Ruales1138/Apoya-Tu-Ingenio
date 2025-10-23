@@ -140,6 +140,81 @@ function FormM() {
                     </div>
                 </form>
             </section>
+
+            <section className={style.containerPostulation}>
+                <h2 className={style.textPostulation}>Postulación a Cursos y Disponibilidad</h2>
+                <form>
+                    <p className={style.textCourses}>Cursos a postularse<span className={style.required}>*</span></p>
+
+                    <select className={style.containerCourses}>
+                        <option value="">Seleccionar Cursos</option>
+                        <option value="Matemáticas I">Matemáticas I</option>
+                        <option value="Programación Básica">Programación Básica</option>
+                    </select>
+
+                    <p className={style.textDisponibility}>Disponibilidad Horaria</p>
+
+                    <div className={style.containerHours}>
+                        <p className={style.textFirstHour}>8:00 - 10:00</p>
+                        <p className={style.textSecondHour}>10:00 - 12:00</p>
+                        <p className={style.textThirdHour}>12:00 - 14:00</p>
+                        <p className={style.textFourthHour}>14:00 - 16:00</p>
+
+                        <p className={style.textL}>L</p>
+                        <p className={style.textMa}>M</p>
+                        <p className={style.textMi}>X</p>
+                        <p className={style.textJ}>J</p>
+                        <p className={style.textV}>V</p>
+                        <p className={style.textS}>S</p>
+                        <p className={style.textD}>D</p>
+
+                        <input type="checkbox" className={style.checkbox1} />
+                        <input type="checkbox" className={style.checkbox2} />
+                        <input type="checkbox" className={style.checkbox3} />
+                        <input type="checkbox" className={style.checkbox4} />
+
+                        <input type="checkbox" className={style.checkbox5} />
+                        <input type="checkbox" className={style.checkbox6} />
+                        <input type="checkbox" className={style.checkbox7} />
+                        <input type="checkbox" className={style.checkbox8} />
+                        
+                        <input type="checkbox" className={style.checkbox9} />
+                        <input type="checkbox" className={style.checkbox10} />
+                        <input type="checkbox" className={style.checkbox11} />
+                        <input type="checkbox" className={style.checkbox12} />
+
+                        <input type="checkbox" className={style.checkbox13} />      
+                        <input type="checkbox" className={style.checkbox14} />
+                        <input type="checkbox" className={style.checkbox15} />
+                        <input type="checkbox" className={style.checkbox16} />
+
+                        <input type="checkbox" className={style.checkbox17} />
+                        <input type="checkbox" className={style.checkbox18} />
+                        <input type="checkbox" className={style.checkbox19} />
+                        <input type="checkbox" className={style.checkbox20} />
+
+                        <input type="checkbox" className={style.checkbox21} />
+                        <input type="checkbox" className={style.checkbox22} />
+                        <input type="checkbox" className={style.checkbox23} />
+                        <input type="checkbox" className={style.checkbox24} />
+                                   <input type="checkbox" className={style.checkbox21} />
+                        <input type="checkbox" className={style.checkbox22} />
+                        <input type="checkbox" className={style.checkbox23} />
+                        <input type="checkbox" className={style.checkbox24} />
+
+                        <input type="checkbox" className={style.checkbox25} />
+                        <input type="checkbox" className={style.checkbox26} />
+                        <input type="checkbox" className={style.checkbox27} />
+                        <input type="checkbox" className={style.checkbox28} />
+                        
+                    </div>
+                </form>
+
+            </section>
+
+            <button className={style.buttonCancel} type="button">Cancelar</button>
+            <button className={style.buttonSend} type="submit">Enviar</button>
+
         </div>
     )
 };

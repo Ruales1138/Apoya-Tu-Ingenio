@@ -595,6 +595,12 @@
   flex-direction: row; 
   align-items: center; 
   gap: 6px; 
+  cursor: pointer; /* Cambia el cursor a una mano al pasar sobre el botón */
+}
+
+/* Añadir cursor pointer a las etiquetas de radio */
+.radioYes .radioYes-item label, .radioNo .radioNo-item label {
+  cursor: pointer;
 }
 /* Radio - Item - outer circle */
 .radioYes .radioYes-item .outer-circle, .radioNo .radioNo-item .outer-circle {
@@ -602,6 +608,7 @@
   background: #00000000; /* transparent */
   border: #565D6DFF 1px solid; /* neutral-600 */
   border-radius: 100%; 
+  cursor: pointer; /* Cursor pointer específicamente para el círculo exterior */
 }
 /* Radio - Item - Inner circle */
 .radioYes .radioYes-item .inner-circle, .radioNo .radioNo-item .inner-circle {
@@ -701,4 +708,504 @@
   color: #565D6DFF; /* neutral-600 */
   background: #DEE1E6FF; /* neutral-300 */
   border-color: #DEE1E6FF; /* neutral-300 */
+}
+/* Container */
+.containerPostulation {
+  position: absolute; 
+  top: 980px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1208px; 
+  height: 410px; 
+  background: #FFFFFFFF; /* white */
+  border-radius: 10px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  box-shadow: 0px 0px 1px #171a1f0D, 0px 0px 2px #171a1f14; /* shadow-xs */
+}
+.textPostulation {
+  position: absolute; 
+  top: 24px; 
+  left: 17px; 
+  font-family: Open Sans; 
+  font-size: 24px; 
+  line-height: 14px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+.textCourses {
+  position: absolute; 
+  top: 101px; 
+  left: 17px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 14px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+/* Container */
+.containerCourses {
+  position: absolute; 
+  top: 133px; 
+  left: 17px; 
+  width: 579px; 
+  height: 40px; 
+  background: #DEE1E6FF; /* neutral-300 */
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid; 
+  padding-top: 2px;
+  font-family: Open Sans;
+}
+.textDisponibility {
+  position: absolute; 
+  top: 189px; 
+  left: 17px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 14px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+/* Container */
+.containerHours {
+  position: absolute; 
+  top: 225px; 
+  left: 17px; 
+  width: 1174px; 
+  height: 168px; 
+  background: #FAFAFBFF; /* neutral-100 */
+  border-radius: 6px; 
+}
+
+.textFirstHour {
+  position: absolute; 
+  top: 49px; 
+  left: 16px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 20px; 
+  font-weight: 600; 
+  color: #171A1FFF; /* neutral-900 */
+}
+.textSecondHour {
+  position: absolute; 
+  top: 77px; 
+  left: 16px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 20px; 
+  font-weight: 600; 
+  color: #171A1FFF; /* neutral-900 */
+}
+.textThirdHour {
+  position: absolute; 
+  top: 105px; 
+  left: 16px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 20px; 
+  font-weight: 600; 
+  color: #171A1FFF; /* neutral-900 */
+}
+.textFourthHour {
+  position: absolute; 
+  top: 133px; 
+  left: 16px; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 20px; 
+  font-weight: 600; 
+  color: #171A1FFF; /* neutral-900 */
+}
+
+.textL {
+  position: absolute; 
+  top: 18px; 
+  left: 1002px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+.textMa {
+  position: absolute; 
+  top: 18px; 
+  left: 1023px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+
+.textMi {
+  position: absolute; 
+  top: 18px; 
+  left: 1049px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+
+.textJ {
+  position: absolute; 
+  top: 18px; 
+  left: 1075px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+
+.textV {
+  position: absolute; 
+  top: 18px; 
+  left: 1096px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+.textS {
+  position: absolute; 
+  top: 18px; 
+  left: 1122px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+.textD {
+  position: absolute; 
+  top: 18px; 
+  left: 1144px; 
+  font-family: Open Sans; 
+  font-size: 16px; 
+  line-height: 24px; 
+  font-weight: 600; 
+  color: #565D6DFF; /* neutral-600 */
+}
+
+/* Checkbox */
+.checkbox1 {
+  position: absolute; 
+  top: 55px; 
+  left: 995px; 
+  opacity: 1; 
+}
+.checkbox2 {
+  position: absolute; 
+  top: 83px; 
+  left: 995px; 
+  opacity: 1; 
+}
+.checkbox3 {
+  position: absolute; 
+  top: 111px; 
+  left: 995px; 
+  opacity: 1; 
+}
+.checkbox4 {
+  position: absolute; 
+  top: 139px; 
+  left: 995px; 
+  opacity: 1; 
+}
+.checkbox5 {
+  position: absolute; 
+  top: 55px; 
+  left: 1020px; 
+  opacity: 1; 
+}
+.checkbox6 {
+  position: absolute; 
+  top: 83px; 
+  left: 1020px; 
+  opacity: 1; 
+}
+.checkbox7 {
+  position: absolute; 
+  top: 111px; 
+  left: 1020px; 
+  opacity: 1; 
+}
+.checkbox8 {
+  position: absolute; 
+  top: 139px; 
+  left: 1020px; 
+  opacity: 1; 
+}
+.checkbox9 {
+  position: absolute; 
+  top: 55px; 
+  left: 1044px; 
+  opacity: 1; 
+}
+.checkbox10 {
+  position: absolute; 
+  top: 83px; 
+  left: 1044px; 
+  opacity: 1; 
+}
+.checkbox11 {
+  position: absolute; 
+  top: 111px; 
+  left: 1044px; 
+  opacity: 1; 
+}
+.checkbox12 {
+  position: absolute; 
+  top: 139px; 
+  left: 1044px; 
+  opacity: 1; 
+}
+.checkbox13 {
+  position: absolute; 
+  top: 55px; 
+  left: 1066px; 
+  opacity: 1; 
+}
+.checkbox14 {
+  position: absolute; 
+  top: 83px; 
+  left: 1066px; 
+  opacity: 1; 
+}
+.checkbox15 {
+  position: absolute; 
+  top: 111px; 
+  left: 1066px; 
+  opacity: 1; 
+}
+.checkbox16 {
+  position: absolute; 
+  top: 139px; 
+  left: 1066px; 
+  opacity: 1; 
+}
+.checkbox17 {
+  position: absolute; 
+  top: 55px; 
+  left: 1090px; 
+  opacity: 1; 
+}
+.checkbox18 {
+  position: absolute; 
+  top: 83px; 
+  left: 1090px; 
+  opacity: 1; 
+}
+.checkbox19 {
+  position: absolute; 
+  top: 111px; 
+  left: 1090px; 
+  opacity: 1; 
+}
+.checkbox20 {
+  position: absolute; 
+  top: 139px; 
+  left: 1090px; 
+  opacity: 1; 
+}
+.checkbox21 {
+  position: absolute; 
+  top: 55px; 
+  left: 1116px; 
+  opacity: 1; 
+}
+.checkbox22 {
+  position: absolute; 
+  top: 83px; 
+  left: 1116px; 
+  opacity: 1; 
+}
+.checkbox23 {
+  position: absolute; 
+  top: 111px; 
+  left: 1116px; 
+  opacity: 1; 
+}
+.checkbox24 {
+  position: absolute; 
+  top: 139px; 
+  left: 1116px; 
+  opacity: 1; 
+}
+.checkbox25 {
+  position: absolute; 
+  top: 55px; 
+  left: 1139px; 
+  opacity: 1; 
+}
+.checkbox26 {
+  position: absolute; 
+  top: 83px; 
+  left: 1139px; 
+  opacity: 1; 
+}
+.checkbox27 {
+  position: absolute; 
+  top: 111px; 
+  left: 1139px; 
+  opacity: 1; 
+}
+.checkbox28 {
+  position: absolute; 
+  top: 139px; 
+  left: 1139px; 
+  opacity: 1; 
+}
+.checkbox1 input, .checkbox2 input, .checkbox3 input, .checkbox4 input, .checkbox5 input, .checkbox6 input, .checkbox7 input, .checkbox8 input, .checkbox9 input, .checkbox10 input, .checkbox11 input, .checkbox12 input, .checkbox13 input, .checkbox14 input, .checkbox15 input, .checkbox16 input, .checkbox17 input, .checkbox18 input, .checkbox19 input, .checkbox20 input, .checkbox21 input, .checkbox22 input, .checkbox23 input, .checkbox24 input, .checkbox25 input, .checkbox26 input, .checkbox27 input, .checkbox28 input {
+  display: none; 
+}
+/* Outer square */
+.checkbox1 .outer-square, .checkbox2 .outer-square, .checkbox3 .outer-square, .checkbox4 .outer-square, .checkbox5 .outer-square, .checkbox6 .outer-square, .checkbox7 .outer-square, .checkbox8 .outer-square, .checkbox9 .outer-square, .checkbox10 .outer-square, .checkbox11 .outer-square, .checkbox12 .outer-square, .checkbox13 .outer-square, .checkbox14 .outer-square, .checkbox15 .outer-square, .checkbox16 .outer-square, .checkbox17 .outer-square, .checkbox18 .outer-square, .checkbox19 .outer-square, .checkbox20 .outer-square, .checkbox21 .outer-square, .checkbox22 .outer-square, .checkbox23 .outer-square, .checkbox24 .outer-square, .checkbox25 .outer-square, .checkbox26 .outer-square, .checkbox27 .outer-square, .checkbox28 .outer-square {
+  width: 16px; 
+  height: 16px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  border-radius: 2px; /* border-xs */
+  border-width: 1px;
+  cursor: pointer; /* Cambiar el cursor a mano al pasar sobre los cuadrados de los checkboxes */
+}
+/* Inner square */
+.checkbox1 .inner-square, .checkbox2 .inner-square, .checkbox3 .inner-square, .checkbox4 .inner-square, .checkbox5 .inner-square, .checkbox6 .inner-square, .checkbox7 .inner-square, .checkbox8 .inner-square, .checkbox9 .inner-square, .checkbox10 .inner-square, .checkbox11 .inner-square, .checkbox12 .inner-square, .checkbox13 .inner-square, .checkbox14 .inner-square, .checkbox15 .inner-square, .checkbox16 .inner-square, .checkbox17 .inner-square, .checkbox18 .inner-square, .checkbox19 .inner-square, .checkbox20 .inner-square, .checkbox21 .inner-square, .checkbox22 .inner-square, .checkbox23 .inner-square, .checkbox24 .inner-square, .checkbox25 .inner-square, .checkbox26 .inner-square, .checkbox27 .inner-square, .checkbox28 .inner-square {
+  width: 8px; 
+  height: 8px; 
+  border-radius: 0px; 
+  border-width: 1px; 
+  border-color: #565D6DFF; /* neutral-600 */
+}
+/* Check Icon */
+.checkbox1 svg, .checkbox2 svg, .checkbox3 svg, .checkbox4 svg, .checkbox5 svg, .checkbox6 svg, .checkbox7 svg, .checkbox8 svg, .checkbox9 svg, .checkbox10 svg, .checkbox11 svg, .checkbox12 svg, .checkbox13 svg, .checkbox14 svg, .checkbox15 svg, .checkbox16 svg, .checkbox17 svg, .checkbox18 svg, .checkbox19 svg, .checkbox20 svg, .checkbox21 svg, .checkbox22 svg, .checkbox23 svg, .checkbox24 svg, .checkbox25 svg, .checkbox26 svg, .checkbox27 svg, .checkbox28 svg {
+  display: none; 
+}
+/* Checkbox item */
+.checkbox1 label, .checkbox2 label, .checkbox3 label, .checkbox4 label, .checkbox5 label, .checkbox6 label, .checkbox7 label, .checkbox8 label, .checkbox9 label, .checkbox10 label, .checkbox11 label, .checkbox12 label, .checkbox13 label, .checkbox14 label, .checkbox15 label, .checkbox16 label, .checkbox17 label, .checkbox18 label, .checkbox19 label, .checkbox20 label, .checkbox21 label, .checkbox22 label, .checkbox23 label, .checkbox24 label, .checkbox25 label, .checkbox26 label, .checkbox27 label, .checkbox28 label {
+  display: flex; 
+  align-items: center;
+  cursor: pointer; /* Cambiar el cursor a mano al pasar sobre los checkboxes */
+}
+.checkbox1 label:not(:first-child), .checkbox2 label:not(:first-child), .checkbox3 label:not(:first-child), .checkbox4 label:not(:first-child), .checkbox5 label:not(:first-child), .checkbox6 label:not(:first-child), .checkbox7 label:not(:first-child), .checkbox8 label:not(:first-child), .checkbox9 label:not(:first-child), .checkbox10 label:not(:first-child), .checkbox11 label:not(:first-child), .checkbox12 label:not(:first-child), .checkbox13 label:not(:first-child), .checkbox14 label:not(:first-child), .checkbox15 label:not(:first-child), .checkbox16 label:not(:first-child), .checkbox17 label:not(:first-child), .checkbox18 label:not(:first-child), .checkbox19 label:not(:first-child), .checkbox20 label:not(:first-child), .checkbox21 label:not(:first-child), .checkbox22 label:not(:first-child), .checkbox23 label:not(:first-child), .checkbox24 label:not(:first-child), .checkbox25 label:not(:first-child), .checkbox26 label:not(:first-child), .checkbox27 label:not(:first-child), .checkbox28 label:not(:first-child) {
+  margin-top: 8px; 
+}
+/* Hover */
+.checkbox1 label:hover .outer-square, .checkbox2 label:hover .outer-square, .checkbox3 label:hover .outer-square, .checkbox4 label:hover .outer-square, .checkbox5 label:hover .outer-square, .checkbox6 label:hover .outer-square, .checkbox7 label:hover .outer-square, .checkbox8 label:hover .outer-square, .checkbox9 label:hover .outer-square, .checkbox10 label:hover .outer-square, .checkbox11 label:hover .outer-square, .checkbox12 label:hover .outer-square, .checkbox13 label:hover .outer-square, .checkbox14 label:hover .outer-square, .checkbox15 label:hover .outer-square, .checkbox16 label:hover .outer-square, .checkbox17 label:hover .outer-square, .checkbox18 label:hover .outer-square, .checkbox19 label:hover .outer-square, .checkbox20 label:hover .outer-square, .checkbox21 label:hover .outer-square, .checkbox22 label:hover .outer-square, .checkbox23 label:hover .outer-square, .checkbox24 label:hover .outer-square, .checkbox25 label:hover .outer-square, .checkbox26 label:hover .outer-square, .checkbox27 label:hover .outer-square, .checkbox28 label:hover .outer-square {
+  opacity: 0.4; 
+}
+/* Focused */
+.checkbox1 label:focus-within .outer-square, .checkbox2 label:focus-within .outer-square, .checkbox3 label:focus-within .outer-square, .checkbox4 label:focus-within .outer-square, .checkbox5 label:focus-within .outer-square, .checkbox6 label:focus-within .outer-square, .checkbox7 label:focus-within .outer-square, .checkbox8 label:focus-within .outer-square, .checkbox9 label:focus-within .outer-square, .checkbox10 label:focus-within .outer-square, .checkbox11 label:focus-within .outer-square, .checkbox12 label:focus-within .outer-square, .checkbox13 label:focus-within .outer-square, .checkbox14 label:focus-within .outer-square, .checkbox15 label:focus-within .outer-square, .checkbox16 label:focus-within .outer-square, .checkbox17 label:focus-within .outer-square, .checkbox18 label:focus-within .outer-square, .checkbox19 label:focus-within .outer-square, .checkbox20 label:focus-within .outer-square, .checkbox21 label:focus-within .outer-square, .checkbox22 label:focus-within .outer-square, .checkbox23 label:focus-within .outer-square, .checkbox24 label:focus-within .outer-square, .checkbox25 label:focus-within .outer-square, .checkbox26 label:focus-within .outer-square, .checkbox27 label:focus-within .outer-square, .checkbox28 label:focus-within .outer-square {
+  box-shadow: 0px 0px 2px #144B6C33; 
+}
+/* Selected */
+.checkbox1 input:checked + .outer-square, .checkbox2 input:checked + .outer-square, .checkbox3 input:checked + .outer-square, .checkbox4 input:checked + .outer-square, .checkbox5 input:checked + .outer-square, .checkbox6 input:checked + .outer-square, .checkbox7 input:checked + .outer-square, .checkbox8 input:checked + .outer-square, .checkbox9 input:checked + .outer-square, .checkbox10 input:checked + .outer-square, .checkbox11 input:checked + .outer-square, .checkbox12 input:checked + .outer-square, .checkbox13 input:checked + .outer-square, .checkbox14 input:checked + .outer-square, .checkbox15 input:checked + .outer-square, .checkbox16 input:checked + .outer-square, .checkbox17 input:checked + .outer-square, .checkbox18 input:checked + .outer-square, .checkbox19 input:checked + .outer-square, .checkbox20 input:checked + .outer-square, .checkbox21 input:checked + .outer-square, .checkbox22 input:checked + .outer-square, .checkbox23 input:checked + .outer-square, .checkbox24 input:checked + .outer-square, .checkbox25 input:checked + .outer-square, .checkbox26 input:checked + .outer-square, .checkbox27 input:checked + .outer-square, .checkbox28 input:checked + .outer-square {
+  background: #144B6CFF; 
+}
+.checkbox1 input:checked + .outer-square svg, .checkbox2 input:checked + .outer-square svg, .checkbox3 input:checked + .outer-square svg, .checkbox4 input:checked + .outer-square svg, .checkbox5 input:checked + .outer-square svg, .checkbox6 input:checked + .outer-square svg, .checkbox7 input:checked + .outer-square svg, .checkbox8 input:checked + .outer-square svg, .checkbox9 input:checked + .outer-square svg, .checkbox10 input:checked + .outer-square svg, .checkbox11 input:checked + .outer-square svg, .checkbox12 input:checked + .outer-square svg, .checkbox13 input:checked + .outer-square svg, .checkbox14 input:checked + .outer-square svg, .checkbox15 input:checked + .outer-square svg, .checkbox16 input:checked + .outer-square svg, .checkbox17 input:checked + .outer-square svg, .checkbox18 input:checked + .outer-square svg, .checkbox19 input:checked + .outer-square svg, .checkbox20 input:checked + .outer-square svg, .checkbox21 input:checked + .outer-square svg, .checkbox22 input:checked + .outer-square svg, .checkbox23 input:checked + .outer-square svg, .checkbox24 input:checked + .outer-square svg, .checkbox25 input:checked + .outer-square svg, .checkbox26 input:checked + .outer-square svg, .checkbox27 input:checked + .outer-square svg, .checkbox28 input:checked + .outer-square svg {
+  display: block; 
+  fill: #F2F9FDFF; 
+}
+/* Indeterminate */
+.checkbox1 input:indeterminate + .outer-square, .checkbox2 input:indeterminate + .outer-square, .checkbox3 input:indeterminate + .outer-square, .checkbox4 input:indeterminate + .outer-square, .checkbox5 input:indeterminate + .outer-square, .checkbox6 input:indeterminate + .outer-square, .checkbox7 input:indeterminate + .outer-square, .checkbox8 input:indeterminate + .outer-square, .checkbox9 input:indeterminate + .outer-square, .checkbox10 input:indeterminate + .outer-square, .checkbox11 input:indeterminate + .outer-square, .checkbox12 input:indeterminate + .outer-square, .checkbox13 input:indeterminate + .outer-square, .checkbox14 input:indeterminate + .outer-square, .checkbox15 input:indeterminate + .outer-square, .checkbox16 input:indeterminate + .outer-square, .checkbox17 input:indeterminate + .outer-square, .checkbox18 input:indeterminate + .outer-square, .checkbox19 input:indeterminate + .outer-square, .checkbox20 input:indeterminate + .outer-square, .checkbox21 input:indeterminate + .outer-square, .checkbox22 input:indeterminate + .outer-square, .checkbox23 input:indeterminate + .outer-square, .checkbox24 input:indeterminate + .outer-square, .checkbox25 input:indeterminate + .outer-square, .checkbox26 input:indeterminate + .outer-square, .checkbox27 input:indeterminate + .outer-square, .checkbox28 input:indeterminate + .outer-square {
+  background: #FFFFFFFF; 
+}
+/* Indeterminate */
+.checkbox1 input:indeterminate + .inner-square, .checkbox2 input:indeterminate + .inner-square, .checkbox3 input:indeterminate + .inner-square, .checkbox4 input:indeterminate + .inner-square, .checkbox5 input:indeterminate + .inner-square, .checkbox6 input:indeterminate + .inner-square, .checkbox7 input:indeterminate + .inner-square, .checkbox8 input:indeterminate + .inner-square, .checkbox9 input:indeterminate + .inner-square, .checkbox10 input:indeterminate + .inner-square, .checkbox11 input:indeterminate + .inner-square, .checkbox12 input:indeterminate + .inner-square, .checkbox13 input:indeterminate + .inner-square, .checkbox14 input:indeterminate + .inner-square, .checkbox15 input:indeterminate + .inner-square, .checkbox16 input:indeterminate + .inner-square, .checkbox17 input:indeterminate + .inner-square, .checkbox18 input:indeterminate + .inner-square, .checkbox19 input:indeterminate + .inner-square, .checkbox20 input:indeterminate + .inner-square, .checkbox21 input:indeterminate + .inner-square, .checkbox22 input:indeterminate + .inner-square, .checkbox23 input:indeterminate + .inner-square, .checkbox24 input:indeterminate + .inner-square, .checkbox25 input:indeterminate + .inner-square, .checkbox26 input:indeterminate + .inner-square, .checkbox27 input:indeterminate + .inner-square, .checkbox28 input:indeterminate + .inner-square {
+  background: #F2F9FDFF; 
+}
+/* Disabled */
+.checkbox1 input:disabled + div, .checkbox1 input:disabled + div + span, .checkbox2 input:disabled + div, .checkbox2 input:disabled + div + span, .checkbox3 input:disabled + div, .checkbox3 input:disabled + div + span, .checkbox4 input:disabled + div, .checkbox4 input:disabled + div + span, .checkbox5 input:disabled + div, .checkbox5 input:disabled + div + span, .checkbox6 input:disabled + div, .checkbox6 input:disabled + div + span, .checkbox7 input:disabled + div, .checkbox7 input:disabled + div + span, .checkbox8 input:disabled + div, .checkbox8 input:disabled + div + span, .checkbox9 input:disabled + div, .checkbox9 input:disabled + div + span, .checkbox10 input:disabled + div, .checkbox10 input:disabled + div + span, .checkbox11 input:disabled + div, .checkbox11 input:disabled + div + span, .checkbox12 input:disabled + div, .checkbox12 input:disabled + div + span, .checkbox13 input:disabled + div, .checkbox13 input:disabled + div + span, .checkbox14 input:disabled + div, .checkbox14 input:disabled + div + span, .checkbox15 input:disabled + div, .checkbox15 input:disabled + div + span, .checkbox16 input:disabled + div, .checkbox16 input:disabled + div + span, .checkbox17 input:disabled + div, .checkbox17 input:disabled + div + span, .checkbox18 input:disabled + div, .checkbox18 input:disabled + div + span, .checkbox19 input:disabled + div, .checkbox19 input:disabled + div + span, .checkbox20 input:disabled + div, .checkbox20 input:disabled + div + span, .checkbox21 input:disabled + div, .checkbox21 input:disabled + div + span, .checkbox22 input:disabled + div, .checkbox22 input:disabled + div + span, .checkbox23 input:disabled + div, .checkbox23 input:disabled + div + span, .checkbox24 input:disabled + div, .checkbox24 input:disabled + div + span, .checkbox25 input:disabled + div, .checkbox25 input:disabled + div + span, .checkbox26 input:disabled + div, .checkbox26 input:disabled + div + span,
+.checkbox27 input:disabled + div, .checkbox27 input:disabled + div + span, .checkbox28 input:disabled + div, .checkbox28 input:disabled + div + span {
+  opacity: 0.4; 
+}
+
+
+/* Button */
+.buttonCancel {
+  position: absolute; 
+  top: 1422px; 
+  left: 1148px; 
+  width: 88.671875px; 
+  height: 40px; 
+  padding: 0 12px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+  color: #171A1FFF; /* neutral-900 */
+  background: #FFFFFFFF; /* white */
+  opacity: 1; 
+  border-radius: 6px; 
+  border-width: 1px; 
+  border-color: #DEE1E6FF; /* neutral-300 */
+  border-style: solid;
+  cursor: pointer; /* Cambiar el cursor a mano al pasar sobre el botón */
+}
+/* Hover */
+.buttonCancel:hover {
+  color: #171A1FFF; /* neutral-900 */
+  background: #FFFFFFFF; /* white */
+}
+/* Pressed */
+.buttonCancel:hover:active {
+  color: #171A1FFF; /* neutral-900 */
+  background: #FFFFFFFF; /* white */
+}
+/* Disabled */
+.buttonCancel:disabled {
+  opacity: 0.4; 
+}
+
+
+/* Button */
+.buttonSend {
+  position: absolute; 
+  top: 1422px; 
+  left: 1252px; 
+  width: 71.1875px; 
+  height: 40px; 
+  padding: 0 12px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  font-family: Open Sans; 
+  font-size: 14px; 
+  line-height: 22px; 
+  font-weight: 500; 
+  color: #FFFFFFFF; /* white */
+  background: #C2262BFF; 
+  opacity: 1; 
+  border: none; 
+  border-radius: 6px;
+  cursor: pointer; /* Cambiar el cursor a mano al pasar sobre el botón */
+}
+/* Hover */
+.buttonSend:hover {
+  color: #FFFFFFFF; /* white */
+  background: #C2262BFF; 
+}
+/* Pressed */
+.buttonSend:hover:active {
+  color: #FFFFFFFF; /* white */
+  background: #C2262BFF; 
+}
+/* Disabled */
+.buttonSend:disabled {
+  opacity: 0.4; 
 }
