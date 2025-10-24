@@ -6,6 +6,21 @@ import logo_udem from "../../images/logo_udem.png";
 import Card from "../Card/Card";
 
 function Student() {
+  // temporary placeholder for logged-in user's name; replace with real auth
+  const [userName, setUserName] = useState('Susana Morales');
+  // populate userName from localStorage if available (login stores `user`)
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('user');
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      // prefer full name fields if present, otherwise username
+      const name = parsed.name || parsed.nombre || parsed.username || parsed.userName;
+      if (name) setUserName(name);
+    } catch (e) {
+      // ignore parse errors
+    }
+  }, []);
   const [activeSection, setActiveSection] = useState('convocatorias');
   const activeSectionRef = useRef(activeSection);
   const tickingRef = useRef(false);
@@ -276,7 +291,7 @@ function Student() {
             <div className={style.bannerLeft}>
               <div className={style.welcomeIcon}>🏅</div>
               <div className={style.welcomeText}>
-                <h2>¡Bienvenido, Susana Morales!</h2>
+                <h2>{`¡Bienvenido, ${userName}!`}</h2>
                 <p>Monitora activa en 1 convocatoria. ¡Revisa nuevas oportunidades!</p>
               </div>
             </div>
