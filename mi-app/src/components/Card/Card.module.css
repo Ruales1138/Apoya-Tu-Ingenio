@@ -10,11 +10,22 @@
   justify-content: flex-start;
   text-align: left;
   font-family: 'Open Sans', sans-serif;
-  transition: transform 0.2s ease;
+  /* ensure a stable base transform and smooth transitions */
+  transform: translateY(0) scale(1);
+  transform-origin: top center; /* grow downwards on hover to avoid top clipping */
+  will-change: transform;
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
+/* Replace upward translation (which was being clipped) with a subtle scale
+   and stronger shadow on hover. This avoids the card being visually cut
+   while preserving the hover affordance. */
 .card:hover {
-  transform: translateY(-4px);
+  /* scale slightly from the top so the card doesn't shift above its container
+     (which would be clipped by the parent's overflow:hidden). Keep the scale
+     subtle to preserve layout and prevent clipping. */
+  transform: translateY(0) scale(1.015);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 .cardImage {
