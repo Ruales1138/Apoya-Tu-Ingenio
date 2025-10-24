@@ -246,12 +246,179 @@ body {
 }
 
 .cardsContainer {
+  /* card sizing variables. --card-width will shrink to fit when the
+    available width is less than 3 cards + 2 gaps. This keeps 3 full
+    cards visible without cutting the right one. */
+  /* responsive gap: shrink on small screens, grow on large ones
+    (made more conservative to avoid cutting the rightmost card) */
+  --card-gap: clamp(8px, 2.5vw, 48px);
+  --card-width: min(300px, calc((100% - (var(--card-gap) * 2)) / 3));
+
   display: flex;
-  justify-content: center;      /* Centra el grupo de tarjetas horizontalmente */
+  justify-content: flex-start;  /* left-align the track so first/last cards are fully visible */
   align-items: flex-start;
-  flex-wrap: wrap;              /* Permite que bajen en pantallas pequeñas */
-  gap: 80px;                    /* Espacio entre tarjetas */
+  flex-wrap: nowrap;            /* no wrap: mantenemos 3 cards en la misma fila */
+  gap: var(--card-gap);         /* más espacio entre tarjetas en desktop */
   margin-top: 24px;
+  overflow: hidden;             /* ocultar desbordes (navegación por botones) */
+
+  /* Let the container use the available width. JS will compute how many
+    full cards can fit and adjust translation so no card is cut. */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  /* give a slightly larger left inset so the first card is not visually
+    covered by the left-side fade overlay. Increased from 40px to 64px
+    to avoid the remaining overlap the user reported. This is removed
+    on small screens where fades are hidden. */
+  padding-left: 64px;
+  /* Add symmetric right padding so the last card is not covered by the
+     right-side fade overlay. Keep the same value as the left inset. */
+  padding-right: 64px;
+}
+
+.cardsTrack {
+  display: flex;
+  align-items: flex-start;
+  transition: transform 420ms cubic-bezier(.22,.9,.27,1);
+  will-change: transform;
+
+  /* gap between card items (matches desktop spacing) */
+  gap: var(--card-gap);
+}
+
+.cardWrapper {
+  flex: 0 0 auto; /* do not shrink */
+  /* use the card width variable so the container frame calculation stays correct */
+  width: var(--card-width);
+  box-sizing: border-box;
+}
+
+/* Wrapper que contiene las flechas y el contenedor de cards */
+.cardsWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+  position: relative; /* allow nav buttons to be positioned as overlays */
+  /* leave horizontal padding so overlay buttons don't steal layout width
+     from the cards container */
+  /* no extra horizontal padding — let the cards container use full width
+    (nav buttons overlay on top). Removing padding increases available
+    space and prevents the right card from being cut. */
+  padding: 0;
+}
+
+/* subtle fade overlays at left/right to mask partially-cut cards */
+.cardsWrapper::before,
+.cardsWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  pointer-events: none;
+  z-index: 2; /* below nav buttons (z-index:4) */
+}
+.cardsWrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #fafafa 0%, rgba(250,250,250,0) 100%);
+}
+.cardsWrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #fafafa 0%, rgba(250,250,250,0) 100%);
+}
+
+.navButton {
+  background: transparent; /* sin recuadro */
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 28px; /* flecha más grande */
+  color: #C2262B;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  transition: transform 0.08s, color 0.12s;
+}
+
+/* position nav buttons as overlays so they don't reduce the available
+   width for the cards container (prevents right card being cut) */
+.cardsWrapper > .navButton {
+  position: absolute;
+  top: 50%;
+  /* base vertical centering; hover will apply a second translateY so
+     we preserve the centering and add a small offset without jumping */
+  transform: translateY(-50%);
+  z-index: 4;
+  background: white; /* make buttons visible when over content */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+/* move the arrows slightly outside the cards area so they don't cover card content */
+.cardsWrapper > .navButton:first-of-type { left: -18px; }
+.cardsWrapper > .navButton:last-of-type { right: -18px; }
+
+.navButton:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* hover: keep vertical centering but apply a subtle scale and stronger shadow
+   (no upward movement) */
+.cardsWrapper > .navButton:hover:not(:disabled) {
+  transform: translateY(-50%) scale(1.04);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+/* --- Responsive: permitir wrap y ocultar flechas en pantallas pequeñas --- */
+@media (max-width: 980px) {
+  .cardsWrapper {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cardsContainer {
+    flex-wrap: wrap; /* permitir que bajen las cards */
+    gap: 32px;
+    overflow: visible;
+    justify-content: center;
+    /* on smaller screens the visible-width constraint should be removed */
+    width: auto;
+    /* remove the left padding used on desktop so cards are centered on mobile */
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .cardsTrack {
+    flex-wrap: wrap; /* allow wrapping inside the track for responsive */
+    gap: 32px; /* match container gap */
+  }
+
+  /* On narrower screens allow each card to take most of the width */
+  .cardWrapper {
+    width: calc(100% - 48px);
+  }
+
+  .navButton {
+    display: none; /* ocultar botones en móvil, el usuario puede scrollear */
+  }
+
+  /* hide fades on small screens where cards wrap */
+  .cardsWrapper::before,
+  .cardsWrapper::after {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .cardsContainer {
+    gap: 12px;
+  }
 }
 
 /* Alinear título "Convocatorias Activas" a la izquierda */

@@ -5,6 +5,9 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 280px;
   padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   text-align: left;
   font-family: 'Open Sans', sans-serif;
   transition: transform 0.2s ease;
@@ -50,4 +53,16 @@
 
 .cardButton:hover {
   background-color: #a71e24;
+}
+
+/* Responsive: tarjetas ocupan ancho completo en pantallas pequeñas */
+@media (max-width: 760px) {
+  .card {
+    width: calc(100% - 40px);
+    margin: 0 auto;
+  }
+
+  .cardImage {
+    height: 160px;
+  }
 }
