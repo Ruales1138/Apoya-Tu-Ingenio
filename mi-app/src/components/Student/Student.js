@@ -72,7 +72,8 @@ function Student() {
 
   const handleProfileClick = () => {
     // manejador placeholder - la app puede reemplazarlo por navegación real
-    // placeholder: reemplazar por navegación real si se desea
+    // eslint-disable-next-line no-console
+    console.log('Ver perfil click');
   };
 
   const scrollToSection = (sectionId) => {
