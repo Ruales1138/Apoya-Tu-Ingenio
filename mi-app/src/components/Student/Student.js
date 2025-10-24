@@ -3,7 +3,7 @@ import style from "./Student.module.css";
 import logo_app from "../../images/logo_app.png";
 import perfil from "../../images/perfil.png";
 import logo_udem from "../../images/logo_udem.png";
-import Card from "../Card/Card";
+import Carousel from "../Caousel/Carousel";
 
 function Student() {
   // temporary placeholder for logged-in user's name; replace with real auth
@@ -31,95 +31,7 @@ function Student() {
   const headerHeightRef = useRef(64);
   const ignoreUntilRef = useRef(0);
 
-  // Estado para convocatorias
-  const [convocatorias, setConvocatorias] = useState([]);
-  // Índice de la primera card visible en el carrusel
-  const [cardIndex, setCardIndex] = useState(0);
-  // número de cards visibles calculado dinámicamente según ancho disponible
-  const [visibleCount, setVisibleCount] = useState(3);
-  const cardsContainerRef = useRef(null);
-  const [trackX, setTrackX] = useState(0);
-  const cardsTrackRef = useRef(null);
-
-  // Llamada al backend
-  useEffect(() => {
-    fetch("http://localhost:3001/api/convocatorias")
-      .then((res) => res.json())
-      .then((data) => {
-        setConvocatorias(data.convocatorias || []);
-      })
-      .catch((err) => console.error("Error cargando convocatorias:", err));
-  }, []);
-
-  // Mantener el índice dentro de rango cuando cambian las convocatorias
-  useEffect(() => {
-    const maxIndex = Math.max(0, convocatorias.length - visibleCount);
-    if (cardIndex > maxIndex) setCardIndex(0);
-  }, [convocatorias, cardIndex]);
-
-  // navegar por "páginas" de visibleCount para evitar mostrar cards parciales
-  const prevCard = () => setCardIndex((i) => Math.max(0, i - visibleCount));
-  const nextCard = () => setCardIndex((i) => Math.min(Math.max(0, convocatorias.length - visibleCount), i + visibleCount));
-
-  // Update track position (px) when index, resize or cards change
-  useEffect(() => {
-    const update = () => {
-      const track = cardsTrackRef.current;
-      if (!track) return setTrackX(0);
-      const firstCardWrapper = track.querySelector('div');
-      const computed = window.getComputedStyle(track);
-      const gap = parseFloat(computed.gap || computed.columnGap || 0) || 0;
-      const cardWidth = firstCardWrapper ? firstCardWrapper.offsetWidth : 0;
-      const step = cardWidth + gap;
-  const container = cardsContainerRef.current;
-  const containerWidth = container ? container.clientWidth : 0;
-  // account for container paddings (we add left/right in CSS to avoid fades)
-  const containerComputed = container ? window.getComputedStyle(container) : null;
-  const paddingLeft = containerComputed ? parseFloat(containerComputed.paddingLeft || 0) : 0;
-  const paddingRight = containerComputed ? parseFloat(containerComputed.paddingRight || 0) : 0;
-  const visibleWidth = Math.max(0, containerWidth - paddingLeft - paddingRight);
-
-  // compute how many full cards fit inside the visible area (avoid partial cut)
-  const calcVisible = cardWidth > 0 ? Math.max(1, Math.floor((visibleWidth + gap) / step)) : 1;
-      if (calcVisible !== visibleCount) {
-        setVisibleCount(calcVisible);
-      }
-
-      const desired = cardIndex * step;
-      // compute max allowed translate to avoid overscrolling and cutting last card
-  // compute max allowed translate so no card is cut; use visibleWidth (exclude paddings)
-  const maxX = Math.max(0, track.scrollWidth - visibleWidth);
-      const finalX = Math.min(desired, maxX);
-
-      // debug logging to help tune widths/gaps during development
-      try {
-        // eslint-disable-next-line no-console
-        console.log('[carousel-debug]', {
-          containerWidth,
-          paddingLeft,
-          paddingRight,
-          visibleWidth,
-          trackScrollWidth: track.scrollWidth,
-          cardWidth,
-          gap,
-          step,
-          cardIndex,
-          desired,
-          maxX,
-          finalX,
-        });
-      } catch (e) {}
-
-      // ensure cardIndex is within new bounds if visibleCount changed
-      const maxIndex = Math.max(0, convocatorias.length - (calcVisible || visibleCount));
-      if (cardIndex > maxIndex) setCardIndex(0);
-      setTrackX(finalX);
-    };
-
-    update();
-    window.addEventListener('resize', update);
-    return () => window.removeEventListener('resize', update);
-  }, [cardIndex, convocatorias]);
+  
 
   // compute anchors/boundaries used by the scroll handler. Extracted so
   // it can be called after programmatic scrolling to keep positions in sync.
@@ -299,55 +211,8 @@ function Student() {
           </div>
         </section>
 
-        {/* Convocatorias */}
-        <section id="convocatorias">
-          <h2>Convocatorias Activas</h2>
-          <div className={style.cardsWrapper}>
-            {convocatorias.length > visibleCount && (
-              <button
-                className={style.navButton}
-                onClick={prevCard}
-                disabled={cardIndex === 0}
-                aria-label="Anterior"
-              >
-                ‹
-              </button>
-            )}
-
-            <div className={style.cardsContainer} ref={cardsContainerRef}>
-              <div className={style.cardsTrack} ref={cardsTrackRef} style={{ transform: `translateX(-${trackX}px)` }}>
-                {convocatorias.length > 0 ? (
-                  convocatorias
-                    .slice(0, convocatorias.length) // render all but show via track
-                    .map((conv) => (
-                      <div key={conv.id} className={style.cardWrapper}>
-                        <Card
-                          titulo={conv.titulo}
-                          materia={conv.materia}
-                          numeroPuestos={conv.numeroPuestos}
-                          fechaFin={conv.fechaFin}
-                          imagen={conv.imagen}
-                        />
-                      </div>
-                    ))
-                ) : (
-                  <p>No hay convocatorias activas en este momento.</p>
-                )}
-              </div>
-            </div>
-
-            {convocatorias.length > visibleCount && (
-              <button
-                className={style.navButton}
-                onClick={nextCard}
-                disabled={cardIndex >= Math.max(0, convocatorias.length - visibleCount)}
-                aria-label="Siguiente"
-              >
-                ›
-              </button>
-            )}
-          </div>
-        </section>
+  {/* Convocatorias */}
+  <Carousel />
 
         {/* Mis aplicaciones */}
         <section id="aplicaciones">
