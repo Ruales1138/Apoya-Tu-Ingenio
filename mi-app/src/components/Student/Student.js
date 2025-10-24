@@ -38,10 +38,12 @@ function Student() {
     try {
       document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
     } catch (e) {}
-
   const sections = Array.from(document.querySelectorAll('section[id]'));
+  // Excluir la sección de bienvenida para que el menú lateral trate
+  // la zona superior (banner de bienvenida) como parte de "convocatorias".
+  const visibleSections = sections.filter((s) => s.id !== 'bienvenida');
   // use offsetTop (document-relative) which is stable during smooth scroll
-  const anchors = sections.map((s) => ({ id: s.id, top: s.offsetTop }));
+  const anchors = visibleSections.map((s) => ({ id: s.id, top: s.offsetTop }));
     anchorsRef.current = anchors;
 
     const boundaries = [];
