@@ -1,0 +1,42 @@
+.alertsContainer {
+  display: flex;
+  flex-direction: column; /* apiladas verticalmente */
+  gap: 16px; /* espacio entre alertas */
+  margin: 25px;
+}
+
+.alertBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px; /* espacio entre icono y texto */
+  background: #F3F4F6FF;
+  border-radius: 8px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.alertIcon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.alertText {
+  text-align: left;  /* fuerza que el texto esté a la izquierda */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alertText h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: #222;
+}
+
+.alertText p {
+  font-size: 14px;
+  margin: 0;
+  color: #555;
+  line-height: 1.3;
+}

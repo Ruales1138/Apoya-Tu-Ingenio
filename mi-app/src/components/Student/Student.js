@@ -4,17 +4,20 @@ import logo_app from "../../images/logo_app.png";
 import perfil from "../../images/perfil.png";
 import logo_udem from "../../images/logo_udem.png";
 import Carousel from "../Caousel/Carousel";
+import Aplications from "../Aplications/Aplications";
+import Alerts from "../Alerts/Alerts";
+import Welcome from "../Welcome/Welcome";
 
 function Student() {
-  // temporary placeholder for logged-in user's name; replace with real auth
+  // marcador temporal para el nombre del usuario conectado; reemplazar por la autenticación real
   const [userName, setUserName] = useState('Susana Morales');
-  // populate userName from localStorage if available (login stores `user`)
+  // poblar userName desde localStorage si está disponible (el login guarda `user`)
   useEffect(() => {
     try {
       const raw = localStorage.getItem('user');
       if (!raw) return;
       const parsed = JSON.parse(raw);
-      // prefer full name fields if present, otherwise username
+  // preferir campos de nombre completo si están presentes, de lo contrario usar username
       const name = parsed.name || parsed.nombre || parsed.username || parsed.userName;
       if (name) setUserName(name);
     } catch (e) {
@@ -25,7 +28,7 @@ function Student() {
   const activeSectionRef = useRef(activeSection);
   const tickingRef = useRef(false);
   const isAutoScrollingRef = useRef(false);
-  // unused pending/debounce refs removed (we use deterministic boundaries)
+  // se eliminaron refs de espera/debounce no usados (usamos límites determinísticos)
   const anchorsRef = useRef([]);
   const boundariesRef = useRef([]);
   const headerHeightRef = useRef(64);
@@ -33,8 +36,8 @@ function Student() {
 
   
 
-  // compute anchors/boundaries used by the scroll handler. Extracted so
-  // it can be called after programmatic scrolling to keep positions in sync.
+  // calcular anclas/límites usados por el manejador de scroll. Extraído para
+  // poder llamarlo después de un scroll programático y mantener las posiciones sincronizadas.
   const computeAnchors = () => {
     const header = document.querySelector('header');
     const headerHeight = header ? header.offsetHeight : 64;
@@ -46,7 +49,7 @@ function Student() {
   // Excluir la sección de bienvenida para que el menú lateral trate
   // la zona superior (banner de bienvenida) como parte de "convocatorias".
   const visibleSections = sections.filter((s) => s.id !== 'bienvenida');
-  // use offsetTop (document-relative) which is stable during smooth scroll
+  // usar offsetTop (relativo al documento) que es estable durante el smooth scroll
   const anchors = visibleSections.map((s) => ({ id: s.id, top: s.offsetTop }));
     anchorsRef.current = anchors;
 
@@ -58,35 +61,40 @@ function Student() {
   };
 
   useEffect(() => {
-    // Compute anchors (absolute tops) and boundaries (midpoints) for sections
+  // Calcular anclas (tops absolutos) y límites (puntos medios) para las secciones
     computeAnchors();
     window.addEventListener('resize', computeAnchors);
-    // recompute after fonts/images load (small delay)
+  // recalcular después de que carguen fuentes/imagenes (pequeña demora)
     window.setTimeout(computeAnchors, 500);
 
     return () => window.removeEventListener('resize', computeAnchors);
   }, []);
 
+  const handleProfileClick = () => {
+    // manejador placeholder - la app puede reemplazarlo por navegación real
+    // placeholder: reemplazar por navegación real si se desea
+  };
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (!element) return;
 
-    // use scrollIntoView so browser respects scroll-margin-top (which we set via CSS var)
-    // mark as programmatic scroll so the scroll listener/observer won't override
+  // usar scrollIntoView para que el navegador respete scroll-margin-top (que ajustamos mediante una variable CSS)
+  // marcar como scroll programático para que el listener/observador de scroll no lo sobrescriba
   isAutoScrollingRef.current = true;
-  // compute final scroll top so the section sits just below the header
+  // calcular la posición final de scroll para que la sección quede justo debajo del header
   const header = document.querySelector('header');
   const headerHeight = header ? header.offsetHeight : headerHeightRef.current || 64;
   const targetTop = element.offsetTop - headerHeight - 12; // align with scroll-margin-top
-  // set an ignore window to avoid onScroll handling flurries while browser animates
+  // establecer una ventana de ignorar para evitar que el onScroll procese múltiples eventos mientras el navegador anima
   ignoreUntilRef.current = Date.now() + 1200;
   window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    // update active immediately for UI feedback
+  // actualizar la sección activa inmediatamente para retroalimentación en la UI
     setActiveSection(sectionId);
     activeSectionRef.current = sectionId;
 
-    // monitor the scroll position and re-enable manual detection when
-    // the browser has completed the smooth scroll (or after a max wait)
+    // monitorizar la posición de scroll y reactivar la detección manual cuando
+    // el navegador haya completado el smooth scroll (o después de un tiempo máximo)
     const start = Date.now();
     const maxWait = 2000; // ms
   const tolerance = 12; // px
@@ -108,8 +116,8 @@ function Student() {
     }, checkInterval);
   };
 
-  // Sync active section while user scrolls manually: choose the section whose
-  // top is closest to the header position. Use requestAnimationFrame for perf.
+  // Sincronizar la sección activa mientras el usuario hace scroll manual: elegir la sección cuyo
+  // top esté más cerca de la línea bajo el header. Usar requestAnimationFrame por rendimiento.
   useEffect(() => {
     const sections = Array.from(document.querySelectorAll('section[id]'));
     if (!sections.length) return;
@@ -198,98 +206,13 @@ function Student() {
       {/* Contenido principal */}
       <main className={style.content}>
         {/* Banner de bienvenida */}
-        <section id="bienvenida">
-          <div className={style.welcomeBanner}>
-            <div className={style.bannerLeft}>
-              <div className={style.welcomeIcon}>🏅</div>
-              <div className={style.welcomeText}>
-                <h2>{`¡Bienvenido, ${userName}!`}</h2>
-                <p>Monitora activa en 1 convocatoria. ¡Revisa nuevas oportunidades!</p>
-              </div>
-            </div>
-            <button className={style.viewProfileBtn}>Ver perfil</button>
-          </div>
-        </section>
-
-  {/* Convocatorias */}
-  <Carousel />
-
+        <Welcome userName={userName} onProfileClick={handleProfileClick} />
+        {/* Convocatorias */}
+        <Carousel />
         {/* Mis aplicaciones */}
-        <section id="aplicaciones">
-          <h2>Mis Aplicaciones</h2>
-          <div className={style.applicationsTable}>
-            <table className={style.table}>
-              <thead>
-                <tr>
-                  <th>Convocatoria</th>
-                  <th>Curso</th>
-                  <th>Fecha de Aplicación</th>
-                  <th>Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Monitoría de Programación I</td>
-                  <td>Ingeniería de Sistemas</td>
-                  <td>01/05/2024</td>
-                  <td className={style.estadoAceptada}>Aceptada</td>
-                </tr>
-                <tr>
-                  <td>Monitoría de Base de Datos</td>
-                  <td>Ciencias de la Computación</td>
-                  <td>28/04/2024</td>
-                  <td className={style.estadoPendiente}>Pendiente</td>
-                </tr>
-                <tr>
-                  <td>Monitoría de Estadística</td>
-                  <td>Matemáticas</td>
-                  <td>25/04/2024</td>
-                  <td className={style.estadoRechazada}>Rechazada</td>
-                </tr>
-                <tr>
-                  <td>Monitoría de Física II</td>
-                  <td>Ingeniería Civil</td>
-                  <td>22/04/2024</td>
-                  <td className={style.estadoPendiente}>Pendiente</td>
-                </tr>
-                <tr>
-                  <td>Monitoría de Redes I</td>
-                  <td>Ingeniería de Telecomunicaciones</td>
-                  <td>18/04/2024</td>
-                  <td className={style.estadoAceptada}>Aceptada</td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-        </section>
-
-
-  {/* Formulario movido a MoreInfo component. Se muestra en /info */}
-
-        
+        <Aplications />
         {/* Alertas */}
-        <section id="alertas"> <h2>Alertas importantes</h2>
-          <div className={style.alertsContainer}>
-            {/* Primer alerta */}
-            <div className={style.alertBox}>
-              <div className={style.alertIcon}>🔔</div>
-              <div className={style.alertText}>
-                <h3>¡Alerta!</h3>
-                <p>Tienes 2 tareas pendientes para la monitoría de Programación I.</p>
-              </div>
-            </div>
-
-            {/* Segunda alerta */}
-            <div className={style.alertBox}>
-              <div className={style.alertIcon}>🔔</div>
-              <div className={style.alertText}>
-                <h3>¡Alerta!</h3>
-                <p>Se ha publicado una nueva convocatoria para Química Orgánica.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-        
+        <Alerts />
       </main>
 
       {/* Footer */}
