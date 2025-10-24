@@ -4,11 +4,6 @@ import logo_app from "../../images/logo_app.png";
 import perfil from "../../images/perfil.png";
 import logo_udem from "../../images/logo_udem.png";
 import Card from "../Card/Card";
-import portada_1 from "../../images/portada_1.png";
-import portada_2 from "../../images/portada_2.png";
-import portada_3 from "../../images/portada_3.png";
-import logo_subir from "../../images/logo_subir.png";
-import { Link } from "react-router-dom";
 
 function Student() {
   const [activeSection, setActiveSection] = useState('convocatorias');
@@ -219,10 +214,10 @@ function Student() {
                 <Card
                   key={conv.id}
                   titulo={conv.titulo}
-                  descripcion={conv.descripcion}
                   materia={conv.materia}
-                  estado={conv.estado}
+                  numeroPuestos={conv.numeroPuestos}
                   fechaFin={conv.fechaFin}
+                  imagen={conv.imagen}
                 />
               ))
             ) : (
