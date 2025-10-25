@@ -5,6 +5,7 @@ import Student from './components/Student/Student';
 import FormM from './components/FormM/FormM';
 import MoreInfo from './components/MoreInfo/MoreInfo';
 import Register from "./components/Register/Register";
+import Teacher from './components/Teacher/Teacher';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/form' element={<FormM />} />
         <Route path='/info' element={<MoreInfo />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/teacher" element={<Teacher />} />
       </Routes>
     </div>
   );
