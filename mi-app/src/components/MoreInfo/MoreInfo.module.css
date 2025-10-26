@@ -1,22 +1,35 @@
-/* Styles for the moved application form */
-.applicationForm {
-	background: #FBE9EEFF;
-	padding: 30px;
-	border-radius: 8px;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-	font-family: 'Open Sans', sans-serif;
-	margin: 25px;
+
+
+.pageHeader {
 	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	margin-top: 50px;
-	margin-bottom: 50px;
+	justify-content: space-between;
+	align-items: center;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 10px;
 }
 
-.formHeader {
+.logoUdemContainer {
+	padding: 0;
+}
+
+.logoUdem {
+	width: 120px;
+	height: auto;
+}
+
+.avatarContainer {
 	display: flex;
-	align-items: flex-start;
-	gap: 12px;
+	align-items: center;
+	gap: 8px;
+}
+
+.avatar {
+	width: 48px;
+	height: 48px;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 .formHeaderText {
@@ -81,3 +94,72 @@
 	transition: background 0.2s;
 }
 
+/* --- LOGO UNIVERSIDAD --- */
+.logoUdemContainer {
+	/* kept for backward compatibility if used elsewhere; header uses .pageHeader for layout */
+	padding: 0;
+	text-align: left;
+}
+
+
+/* Avatar */ 
+
+.backBtnContainer {
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-top: 12px;
+	margin-bottom: 8px;
+	text-align: left;
+}
+
+.backBtn {
+	display: inline-block;
+	background: transparent;
+	color: #C2262B;
+	border: 1px solid #C2262B;
+	padding: 8px 14px;
+	border-radius: 6px;
+	font-weight: 700;
+	text-decoration: none;
+	transition: background 0.15s, color 0.15s;
+}
+
+.backBtn:hover {
+	background: #C2262B;
+	color: #fff;
+}
+
+
+/* Contenido */ 
+
+.content {
+	margin-left: 150px;
+	margin-right: 150px;
+}
+
+/* Styles for the moved application form */
+.applicationForm {
+	background: #FBE9EEFF;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+	font-family: 'Open Sans', sans-serif;
+	margin: 25px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.formHeader {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.formHeader img {
+  width: 80px; /* tamaño original del logo_subir */
+  height: auto;
+  object-fit: contain;
+}
