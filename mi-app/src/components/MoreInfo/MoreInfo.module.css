@@ -161,7 +161,7 @@
 	flex-direction: column;
 	gap: 16px;
 	margin-top: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 80px; /* más espacio respecto al footer */
 }
 
 .formHeader {
@@ -466,4 +466,38 @@
 	font-size: 18px;
 	line-height: 1;
 	display: inline-block;
+}
+
+/* --- FOOTER (estilo equivalente al de Student, sin sidebar) --- */
+.footer {
+	height: 50px;
+	background-color: #fff;
+	border-top: 1px solid #ddd;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 40px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.footerLinks a {
+	margin-right: 24px;
+	text-decoration: none;
+	color: #333;
+	font-size: 14px;
+}
+
+.footerLinks a:hover {
+	text-decoration: underline;
+}
+
+.footerIcons a {
+	margin-left: 16px;
+	color: #333;
+	font-size: 18px;
+	transition: color 0.2s;
+}
+
+.footerIcons a:hover {
+	color: #C2262B;
 }

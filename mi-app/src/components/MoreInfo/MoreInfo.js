@@ -161,6 +161,26 @@ export default function MoreInfo() {
         </section>
       </div>
 
+      {/* Footer (copiado de Student, adaptado a MoreInfo) */}
+      <footer className={style.footer}>
+        <div className={style.footerLinks}>
+          <a href="#recursos">Recursos</a>
+          <a href="#contacto">Contacto</a>
+          <a href="#legal">Legal</a>
+        </div>
+
+        <div className={style.footerIcons}>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-twitter"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+            <i className="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </footer>
       
     </div>
   );
