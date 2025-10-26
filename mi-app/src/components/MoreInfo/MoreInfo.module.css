@@ -113,20 +113,32 @@
 }
 
 .backBtn {
-	display: inline-block;
+	display: inline-flex; /* usar flex para alinear la flecha y el texto */
+	align-items: center;
+	gap: 8px;
 	background: transparent;
-	color: #C2262B;
-	border: 1px solid #C2262B;
-	padding: 8px 14px;
-	border-radius: 6px;
+	color: #565D6DFF; /* color solicitado para letra y flecha */
+	border: none;
+	padding: 4px 8px;
+	border-radius: 0;
 	font-weight: 700;
 	text-decoration: none;
-	transition: background 0.15s, color 0.15s;
+	transition: color 0.15s, transform 0.15s;
+	position: relative;
 }
 
 .backBtn:hover {
-	background: #C2262B;
-	color: #fff;
+	background: transparent;
+	color: #3f444b; /* variante más oscura para hover */
+}
+
+/* Flecha antes del texto del botón */
+.backBtn::before {
+	content: "←";
+	display: inline-block;
+	margin-right: 6px;
+	font-size: 20px; /* aumentado */
+	/* ya no depende de vertical-align; el flex container lo centra */
 }
 
 
