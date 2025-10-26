@@ -98,15 +98,42 @@ export default function MoreInfo() {
           </p>
         </section>
 
-        {/* Requisitos */}
-        <section className={style.requirements}>
-          <h2 className={style.requirementsTitle}>Requisitos</h2>
-          <ul className={style.requirementsList}>
-            <li>Haber aprobado Programación I con una nota mínima de 4.0</li>
-            <li>Conocimiento sólido en estructuras de datos básicas y algoritmos</li>
-            <li>Capacidad para explicar conceptos complejos de manera clara</li>
-            <li>Disponibilidad de 10 horas semanales para las actividades de monitoría</li>
-            <li>Excelente actitud de servicio y proactividad</li>
+        {/* Requisitos + Habilidades en dos columnas */}
+        <section className={style.infoColumns}>
+          {/* Requisitos */}
+          <section className={style.requirements}>
+            <h2 className={style.requirementsTitle}>Requisitos</h2>
+            <ul className={style.requirementsList}>
+              <li>Haber aprobado Programación I con una nota mínima de 4.0</li>
+              <li>Conocimiento sólido en estructuras de datos básicas y algoritmos</li>
+              <li>Capacidad para explicar conceptos complejos de manera clara</li>
+              <li>Disponibilidad de 10 horas semanales para las actividades de monitoría</li>
+              <li>Excelente actitud de servicio y proactividad</li>
+            </ul>
+          </section>
+
+          {/* Habilidades */}
+          <section className={style.skills}>
+            <h2 className={style.skillsTitle}>Habilidades</h2>
+            <ul className={style.skillsList}>
+              <li>Python</li>
+              <li>Java</li>
+              <li>Pensamiento lógico</li>
+              <li>Resolución de problemas</li>
+              <li>Comunicación efectiva</li>
+              <li>Trabajo en equipo</li>
+            </ul>
+          </section>
+        </section>
+
+        {/* Beneficios */}
+        <section className={style.benefits}>
+          <h2 className={style.benefitsTitle}>Beneficios</h2>
+          <ul className={style.benefitsList}>
+            <li>Estímulo económico</li>
+            <li>Certificado de experiencia laboral</li>
+            <li>Desarrollo de habilidades de liderazgo y enseñanza</li>
+            <li>Networking con profesores y estudiantes avanzados</li>
           </ul>
         </section>
 

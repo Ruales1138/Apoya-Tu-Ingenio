@@ -374,3 +374,96 @@
 	color: #C2262B; /* bullets rojos */
 	font-size: 1rem;
 }
+
+/* Habilidades */
+.skills {
+	margin: 10px 0 25px; /* coherente con description/requirements */
+	color: #222;
+}
+
+.skillsTitle {
+	font-size: 22px;
+	font-weight: 700;
+	margin: 0 0 12px;
+	color: #222;
+	text-align: left;
+}
+
+.skillsList {
+	margin: 0;
+	padding-left: 0; /* sin sangría: manejamos el icono con ::before */
+	list-style: none;
+}
+
+.skillsList li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 12px 0;
+}
+
+.skillsList li::before {
+	content: "✔";
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #C2262B;
+	color: #C2262B;
+	border-radius: 50%;
+	font-size: 12px;
+	line-height: 1;
+}
+
+/* Contenedor de dos columnas para Requisitos (izquierda) y Habilidades (derecha) */
+.infoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  margin: 10px 0 25px; /* coherente con secciones vecinas */
+}
+
+@media (max-width: 900px) {
+  .infoColumns {
+    grid-template-columns: 1fr; /* apilar en pantallas medianas/pequeñas */
+    gap: 20px;
+  }
+}
+
+/* Beneficios */
+.benefits {
+	margin: 10px 25px 25px; /* alineado con otras secciones */
+	color: #222;
+}
+
+.benefitsTitle {
+	font-size: 22px;
+	font-weight: 700;
+	margin: 0 0 12px;
+	color: #222;
+	text-align: left;
+}
+
+.benefitsList {
+	margin: 0;
+	padding-left: 0; /* usaremos icono custom */
+	list-style: none;
+}
+
+.benefitsList li {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin: 10px 0; /* igual que .requirementsList li */
+	line-height: 1.6;
+}
+
+.benefitsList li::before {
+	content: "⭐"; /* estrella amarilla */
+	color: #C2262B; /* rojo institucional */
+	font-size: 18px;
+	line-height: 1;
+	display: inline-block;
+}
