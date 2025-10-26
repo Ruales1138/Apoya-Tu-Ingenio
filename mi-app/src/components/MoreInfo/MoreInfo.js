@@ -84,7 +84,32 @@ export default function MoreInfo() {
           </div>
         </section>
 
+
         
+        {/* Descripcion */}
+        <section className={style.description}>
+          <p>
+            La monitoría de Programación I ofrece una oportunidad única para estudiantes 
+            sobresalientes de Ingeniería de Sistemas de apoyar a sus compañeros en el 
+            aprendizaje de los fundamentos de la programación. Como monitor, mejorarás 
+            tus habilidades pedagógicas y de liderazgo mientras refuerzas tus conocimientos 
+            técnicos. Es una experiencia enriquecedora que contribuye al desarrollo 
+            académico de la comunidad universitaria.
+          </p>
+        </section>
+
+        {/* Requisitos */}
+        <section className={style.requirements}>
+          <h2 className={style.requirementsTitle}>Requisitos</h2>
+          <ul className={style.requirementsList}>
+            <li>Haber aprobado Programación I con una nota mínima de 4.0</li>
+            <li>Conocimiento sólido en estructuras de datos básicas y algoritmos</li>
+            <li>Capacidad para explicar conceptos complejos de manera clara</li>
+            <li>Disponibilidad de 10 horas semanales para las actividades de monitoría</li>
+            <li>Excelente actitud de servicio y proactividad</li>
+          </ul>
+        </section>
+
         {/* Application form */}
         <section className={style.applicationForm}>
           <div className={style.formHeader}>
@@ -110,6 +135,6 @@ export default function MoreInfo() {
       </div>
 
       
-    </ div>
+    </div>
   );
 }

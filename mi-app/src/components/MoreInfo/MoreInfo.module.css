@@ -331,3 +331,46 @@
   background: var(--banner-bg);
   color: var(--banner-text);
 }
+
+
+/* Titulo */
+.description {
+  font-weight: 400;
+	color: #222;
+	margin: 10px 0 25px; /* menos espacio arriba, mantiene separación abajo */
+	text-align: left;
+	padding-left: 0px;
+}
+
+/* Requisitos */
+.requirements {
+	margin: 10px 0 25px; /* alinear con .description */
+	color: #222;
+	text-align: left; /* forzar alineación a la izquierda */
+}
+
+.requirementsTitle {
+	font-size: 22px;
+	font-weight: 700;
+	margin: 0 0 12px;
+	color: #222;
+	text-align: left;
+}
+
+.requirementsList {
+	margin: 0;
+	padding-left: 1.25rem; /* sangría estándar */
+	list-style-position: outside; /* bullets fuera, alineación clara a la izquierda */
+	text-align: left; /* evitar centrado por herencia */
+}
+
+.requirementsList li {
+	margin: 10px 0;
+	line-height: 1.6;
+	text-align: left; /* por si hereda centrado */
+}
+
+.requirementsList li::marker {
+	color: #C2262B; /* bullets rojos */
+	font-size: 1rem;
+}
