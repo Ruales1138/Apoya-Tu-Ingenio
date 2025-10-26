@@ -102,13 +102,13 @@
 }
 
 
-/* Avatar */ 
+/* Volver */ 
 
 .backBtnContainer {
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-left: 0;  /* usar solo el margen de .content (150px) */
+	margin-right: 0; /* usar solo el margen de .content (150px) */
 	margin-top: 12px;
-	margin-bottom: 8px;
+	margin-bottom: 4px; /* reducir espacio con el título */
 	text-align: left;
 }
 
@@ -129,7 +129,7 @@
 
 .backBtn:hover {
 	background: transparent;
-	color: #3f444b; /* variante más oscura para hover */
+	color: #C2262B; /* rojo en hover, consistente con el primario */
 }
 
 /* Flecha antes del texto del botón */
@@ -156,7 +156,7 @@
 	border-radius: 8px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 	font-family: 'Open Sans', sans-serif;
-	margin: 25px;
+	margin: 25px 0; /* laterales a 0 para alinearse con .content */
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
@@ -174,4 +174,160 @@
   width: 80px; /* tamaño original del logo_subir */
   height: auto;
   object-fit: contain;
+}
+
+
+/* Titulo */
+.title {
+  font-size: 24px;
+  font-weight: 700;
+	color: #222;
+	margin: 0px 0 25px; /* menos espacio arriba, mantiene separación abajo */
+	text-align: left;
+	padding-left: 0px;
+}
+
+/* Eliminar margenes por defecto del h1 dentro del titulo */
+.title h1 {
+  margin: 0;
+}
+
+/* CourseBanner.css */
+/* Paleta: fondo rosa claro y acentos rojos */
+:root {
+  --banner-bg: #FBE9EEFF;     /* Rosa claro */
+  --banner-text: #3b3b3b;    /* Texto base */
+  --banner-accent: #d81b60;  /* Rojo/rosado para iconos y acentos */
+  --banner-border: #FBE9EEFF;  /* Borde suave */
+}
+
+.course-banner,
+.courseBanner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  align-items: center;
+	justify-items: start; /* por defecto, los items a la izquierda de su celda */
+  background: var(--banner-bg);
+  color: var(--banner-text);
+  border: 1px solid var(--banner-border);
+  border-radius: 12px;
+  padding: 14px 16px;
+	/* Alinear con los 150px del contenedor .content (sin sumar) */
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/* Alineación específica por columna: 1 izquierda (por defecto), 2 centro, 3 izquierda */
+.course-banner .course-banner__item:nth-child(2),
+.courseBanner .courseBanner__item:nth-child(2) {
+	justify-content: center;
+	text-align: center;
+	justify-self: center; /* centrar el ITEM dentro de su celda de grid */
+}
+
+.course-banner .course-banner__item:nth-child(3),
+.courseBanner .courseBanner__item:nth-child(3) {
+	justify-content: flex-end; /* contenido a la derecha dentro del flex */
+	text-align: right;
+	justify-self: end; /* ITEM alineado a la derecha dentro de su celda de grid */
+}
+
+.course-banner__item,
+.courseBanner__item {
+  display: flex;
+  align-items: center;
+	flex-wrap: nowrap; /* evitar salto de línea entre etiqueta y valor */
+  gap: 10px;
+  min-width: 0; /* Permite truncar correctamente */
+	width: max-content; /* no estirar: permite centrar o alinear con justify-self */
+}
+
+/* Utilidades explícitas para alinear ítems del banner */
+.courseBanner__itemCenter { justify-self: center; justify-content: center; text-align: center; }
+.courseBanner__itemLeft { justify-self: start; justify-content: flex-start; text-align: left; }
+
+.course-banner__icon,
+.courseBanner__icon {
+  width: 22px;
+  height: 22px;
+  color: var(--banner-accent);
+  flex: 0 0 auto;
+	display: block; /* evita desalineación vertical por baseline */
+	align-self: center; /* centra verticalmente el icono dentro del item */
+	/* Asegurar que no haya márgenes/padding ocultos */
+	margin: 0;
+	padding: 0;
+}
+
+.course-banner__label,
+.courseBanner__label {
+  font-weight: 600;
+  color: var(--banner-text);
+  flex: 0 0 auto;
+	display: inline-flex; /* centra verticalmente el texto */
+	align-items: center;
+	white-space: nowrap; /* que no se corte 'Semestre:' o 'Fecha límite:' */
+	/* Asegurar que no haya márgenes/padding ocultos */
+	margin: 0;
+	padding: 0;
+}
+
+.course-banner__value,
+.courseBanner__value {
+  font-weight: 500;
+  color: var(--banner-text);
+	/* Truncado elegante si el texto es largo */
+	display: inline-flex; /* centra verticalmente el texto */
+	align-items: center;
+	white-space: nowrap; /* mantiene 'Semestre:' y 'Fecha límite:' en una línea */
+	overflow: hidden;
+	text-overflow: ellipsis;
+  /* Asegurar que no haya márgenes/padding ocultos */
+  margin: 0;
+  padding: 0;
+}
+
+/* Reducir un poco el gap visual del tercer ítem (izquierda) para evitar percepción de espacio extra a la derecha del valor */
+.courseBanner__itemLeft {
+  gap: 8px;
+}
+
+/* Responsivo: en pantallas medianas baja a 2 columnas */
+@media (max-width: 900px) {
+	.course-banner,
+	.courseBanner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsivo: en móviles una sola columna */
+@media (max-width: 560px) {
+	.course-banner,
+	.courseBanner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+	.course-banner__item,
+	.courseBanner__item {
+    gap: 8px;
+  }
+	.course-banner__icon,
+	.courseBanner__icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Modo oscuro opcional (si el documento tiene data-theme="dark") */
+[data-theme="dark"] .course-banner,
+[data-theme="dark"] .courseBanner {
+  --banner-bg: #2a1f24;
+  --banner-text: #f3f3f3;
+  --banner-accent: #ff4d88;
+  --banner-border: #3a2830;
+  border-color: var(--banner-border);
+  background: var(--banner-bg);
+  color: var(--banner-text);
 }
