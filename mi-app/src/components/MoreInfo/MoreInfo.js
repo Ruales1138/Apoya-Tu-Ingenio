@@ -1,11 +1,35 @@
 import React from "react";
 import style from "./MoreInfo.module.css";
 import logo_subir from "../../images/logo_subir.png";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import logo_udem from "../../images/logo_udem.png";
 import avatar from "../../images/avatar.png";
 
 export default function MoreInfo() {
+  // Obtener información enviada desde la Card (si existe)
+  const location = useLocation();
+  const state = location.state || {};
+
+  const formatDate = (d) => {
+    if (!d) return '';
+    const s = String(d);
+    // Convertir YYYY-MM-DD a DD/MM/YYYY
+    const m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (m) return `${m[3]}/${m[2]}/${m[1]}`;
+    return s;
+  };
+
+  const info = {
+    title: state.titulo || 'Monitoría de Programación I',
+    curso: state.materia || 'Ingeniería de Sistemas',
+    fechaLimite: formatDate(state.fechaFin) || '15/05/2024',
+    puestos: state.numeroPuestos,
+    imagen: state.imagen,
+    descripcion: state.descripcion,
+    requisitos: Array.isArray(state.requisitos) ? state.requisitos : undefined,
+    habilidades: Array.isArray(state.habilidades) ? state.habilidades : undefined,
+    beneficios: Array.isArray(state.beneficios) ? state.beneficios : undefined,
+  };
   return (
     <div>
       {/* Header: logo left, avatar right */}
@@ -29,7 +53,7 @@ export default function MoreInfo() {
 
         {/* Titulo */}
         <section className={style.title}>
-          <h1>Monitoría de Programación I</h1>
+          <h1>{info.title}</h1>
         </section>
 
 
@@ -48,7 +72,7 @@ export default function MoreInfo() {
               />
             </svg>
             <span className={style.courseBanner__label}>Curso:</span>
-            <span className={style.courseBanner__value}>Ingeniería de Sistemas</span>
+            <span className={style.courseBanner__value}>{info.curso}</span>
           </div>
 
           <div className={`${style.courseBanner__item} ${style.courseBanner__itemCenter}`}>
@@ -80,7 +104,7 @@ export default function MoreInfo() {
               />
             </svg>
             <span className={style.courseBanner__label}>Fecha límite:</span>
-            <span className={style.courseBanner__value}>15/05/2024</span>
+            <span className={style.courseBanner__value}>{info.fechaLimite}</span>
           </div>
         </section>
 
@@ -89,12 +113,9 @@ export default function MoreInfo() {
         {/* Descripcion */}
         <section className={style.description}>
           <p>
-            La monitoría de Programación I ofrece una oportunidad única para estudiantes 
-            sobresalientes de Ingeniería de Sistemas de apoyar a sus compañeros en el 
-            aprendizaje de los fundamentos de la programación. Como monitor, mejorarás 
-            tus habilidades pedagógicas y de liderazgo mientras refuerzas tus conocimientos 
-            técnicos. Es una experiencia enriquecedora que contribuye al desarrollo 
-            académico de la comunidad universitaria.
+            {info.descripcion || (
+              'La monitoría de Programación I ofrece una oportunidad única para estudiantes sobresalientes de Ingeniería de Sistemas de apoyar a sus compañeros en el aprendizaje de los fundamentos de la programación. Como monitor, mejorarás tus habilidades pedagógicas y de liderazgo mientras refuerzas tus conocimientos técnicos. Es una experiencia enriquecedora que contribuye al desarrollo académico de la comunidad universitaria.'
+            )}
           </p>
         </section>
 
@@ -104,11 +125,15 @@ export default function MoreInfo() {
           <section className={style.requirements}>
             <h2 className={style.requirementsTitle}>Requisitos</h2>
             <ul className={style.requirementsList}>
-              <li>Haber aprobado Programación I con una nota mínima de 4.0</li>
-              <li>Conocimiento sólido en estructuras de datos básicas y algoritmos</li>
-              <li>Capacidad para explicar conceptos complejos de manera clara</li>
-              <li>Disponibilidad de 10 horas semanales para las actividades de monitoría</li>
-              <li>Excelente actitud de servicio y proactividad</li>
+              {(info.requisitos && info.requisitos.length ? info.requisitos : [
+                'Haber aprobado Programación I con una nota mínima de 4.0',
+                'Conocimiento sólido en estructuras de datos básicas y algoritmos',
+                'Capacidad para explicar conceptos complejos de manera clara',
+                'Disponibilidad de 10 horas semanales para las actividades de monitoría',
+                'Excelente actitud de servicio y proactividad'
+              ]).map((req, i) => (
+                <li key={`req-${i}`}>{req}</li>
+              ))}
             </ul>
           </section>
 
@@ -116,12 +141,16 @@ export default function MoreInfo() {
           <section className={style.skills}>
             <h2 className={style.skillsTitle}>Habilidades</h2>
             <ul className={style.skillsList}>
-              <li>Python</li>
-              <li>Java</li>
-              <li>Pensamiento lógico</li>
-              <li>Resolución de problemas</li>
-              <li>Comunicación efectiva</li>
-              <li>Trabajo en equipo</li>
+              {(info.habilidades && info.habilidades.length ? info.habilidades : [
+                'Python',
+                'Java',
+                'Pensamiento lógico',
+                'Resolución de problemas',
+                'Comunicación efectiva',
+                'Trabajo en equipo'
+              ]).map((sk, i) => (
+                <li key={`sk-${i}`}>{sk}</li>
+              ))}
             </ul>
           </section>
         </section>
@@ -130,10 +159,14 @@ export default function MoreInfo() {
         <section className={style.benefits}>
           <h2 className={style.benefitsTitle}>Beneficios</h2>
           <ul className={style.benefitsList}>
-            <li>Estímulo económico</li>
-            <li>Certificado de experiencia laboral</li>
-            <li>Desarrollo de habilidades de liderazgo y enseñanza</li>
-            <li>Networking con profesores y estudiantes avanzados</li>
+            {(info.beneficios && info.beneficios.length ? info.beneficios : [
+              'Estímulo económico',
+              'Certificado de experiencia laboral',
+              'Desarrollo de habilidades de liderazgo y enseñanza',
+              'Networking con profesores y estudiantes avanzados'
+            ]).map((bf, i) => (
+              <li key={`bf-${i}`}>{bf}</li>
+            ))}
           </ul>
         </section>
 

@@ -112,6 +112,10 @@ export default function Carousel() {
                     numeroPuestos={conv.numeroPuestos}
                     fechaFin={conv.fechaFin}
                     imagen={conv.imagen}
+                    descripcion={conv.descripcion}
+                    requisitos={conv.requisitos}
+                    habilidades={conv.habilidadesRequeridas}
+                    beneficios={conv.beneficios}
                   />
                 </div>
               ))
