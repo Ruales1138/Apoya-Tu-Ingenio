@@ -2,6 +2,7 @@ import React from "react";
 import style from "./FormM.module.css";
 import logo_udem from "../../images/logo_udem.png";
 import avatar from "../../images/avatar.png";
+
 function FormM() {
     return(
         <div className={style.pageContainer}>
@@ -123,7 +124,6 @@ function FormM() {
                                     name="monitorExperience" 
                                     value="no" 
                                     id="experienceNo" 
-                                    defaultChecked
                                     className={style.radioInput} 
                                 />
                                 <label htmlFor="experienceNo">No</label>
@@ -194,10 +194,6 @@ function FormM() {
                         <input type="checkbox" className={style.checkbox20} />
 
                         <input type="checkbox" className={style.checkbox21} />
-                        <input type="checkbox" className={style.checkbox22} />
-                        <input type="checkbox" className={style.checkbox23} />
-                        <input type="checkbox" className={style.checkbox24} />
-                                   <input type="checkbox" className={style.checkbox21} />
                         <input type="checkbox" className={style.checkbox22} />
                         <input type="checkbox" className={style.checkbox23} />
                         <input type="checkbox" className={style.checkbox24} />

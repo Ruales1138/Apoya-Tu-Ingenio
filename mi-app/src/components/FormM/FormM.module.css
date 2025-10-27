@@ -1,7 +1,13 @@
+/* Layout container for the whole page */
+.pageContainer {
+  position: relative;
+  min-height: 100vh;
+}
+
 /* Header Container */
 /* --- BARRA SUPERIOR --- */
 .container {
-  position: fixed;
+  position: static; /* que se desplace con el scroll, como en MoreInfo */
   top: 0;
   left: 0;
   right: 0;
@@ -11,99 +17,33 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  box-shadow: 0px 0px 1px rgba(23, 26, 31, 0.87),
-              0px 0px 2px rgba(23, 26, 31, 0.08);
   z-index: 1000;
-}
-
-/* --- LAYOUT GENERAL --- */
-.pageContainer {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 
 /* Header Image */
+/* Logo UdeM (igual que en MoreInfo) */
 .image {
-  position: absolute; 
-  top: 9px; 
-  left: 12px; 
-  width: 150px; 
-  height: 45px; 
-  border-radius: 0px; 
+  position: static; /* participar en el layout del header */
+  /* quitar línea/sombra del header */
+  box-shadow: none;
+  border-radius: 0;
+  width: 120px;
 }
 /* Avatar */ 
+/* Avatar (igual que en MoreInfo) */
 .avatar {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;          
-  width: clamp(28px, 3vw, 36px);
-  height: clamp(28px, 3vw, 36px);
-  background: #F5FAD5FF;
-  overflow: hidden;
-  border-radius: 50%;
-}
-.avatar img {
-  width: 100%;
-  height: 100%;
+  position: static;       /* participar en el layout del header */
+  width: 48px;
+  height: 48px;
   object-fit: cover;
-}
-.avatar .badge {
-  position: absolute;    
-  right: 0;
-  bottom: 0;
-  width: clamp(6px, 0.8vw, 9px);
-  height: clamp(6px, 0.8vw, 9px);
   border-radius: 50%;
-  border: 1.5px solid #FFFFFF;
-}
-
-/* estados (hacer visible la badget según estado) */
-.avatar.active .badge {
-  background: #22c55e;   /* verde */
-  opacity: 1;
-}
-.avatar.idle .badge {
-  background: #facc15;   /* amarillo */
-  opacity: 1;
-}
-.avatar.do_not_disturb .badge {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(6px, 0.8vw, 9px);
-  line-height: 1;
-  color: #FFFFFF;
-  background: #ef4444;   /* rojo */
-  opacity: 1;
-}
-.avatar.inactive .badge {
-  background: #9ca3af;   /* gris */
-  opacity: 1;
-}
-.avatar.idle .badge {
-  background: #000000FF; /* transparent */
-  opacity: 0; 
-  border-width: 1.5px; 
-  border-color: #FFFFFFFF; 
-}
-.avatar.do_not_disturb .badge {
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  font-size: 9px; 
-  line-height: 9px; 
-  color: #FFFFFFFF; /* white */
-  background: #000000FF; /* transparent */
-  opacity: 0; 
-  border-width: 1.5px; 
-  border-color: #FFFFFFFF; 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 /* Ajustes en pantallas pequeñas */
 @media (max-width: 600px) {
-  .avatar { top: 0.75rem; right: 0.75rem; }
+  /* Avatar mantiene tamaño en mobile, no se aplican overrides */
 }
 
 /* Title Text */
@@ -125,11 +65,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  top: 172px; 
-  left: 50%; 
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1208px;
+  top: 108px; 
+  margin-left: auto;   /* centrar con márgenes iguales */
+  margin-right: auto;  /* centrar con márgenes iguales */
+  width: 1208px; /* ancho fijo para mantener separación de columnas */
   min-height: 450px; 
   background: #FFFFFFFF; /* white */
   border-radius: 10px; 
@@ -137,6 +76,12 @@
   border-color: #DEE1E6FF; /* neutral-300 */
   border-style: solid; 
   box-shadow: 0px 0px 1px #171a1f0D, 0px 0px 2px #171a1f14; /* shadow-xs */
+}
+/* Normaliza el modelo de caja para evitar diferencias de ancho visual entre inputs y selects */
+.personalDataContainer *,
+.containerExperience *,
+.containerPostulation * {
+  box-sizing: border-box;
 }
 @media (max-width: 768px) {
   .personalDataContainer {
@@ -163,13 +108,13 @@
 .textbox {
   position: absolute; 
   top: 97px; 
-  left: 17px; 
+  left: 46px; 
   opacity: 1;
   text-align: left;
 }
 
 .textbox input {
-  width: 550px; 
+  width: 558px; 
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
@@ -220,12 +165,12 @@
 .textboxright {
   position: absolute; 
   top: 97px; 
-  left: 612px; 
+  left: calc(100% - 46px - 558px); /* posición relativa al ancho del contenedor para mantener simetría exacta */
   opacity: 1; 
   text-align: left;
 }
 .textboxright input {
-  width: 550px; 
+  width: 558px; 
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
@@ -270,24 +215,28 @@
 
 .textProgram {
   position: absolute; 
-  top: 189px; 
-  left: 17px; 
+  top: 185px; /* sube el bloque para alinear con el campo derecho */
+  left: 46px; 
+  width: 558px; /* mismo ancho que los inputs */
   font-family: Open Sans; 
   font-size: 14px; 
-  line-height: 14px; 
+  line-height: 22px; /* igual que las demás etiquetas */
   font-weight: 500; 
   color: #171A1FFF; /* neutral-900 */
+  text-align: left; /* asegurar alineación a la izquierda */
 }
 
 /* Dropdown Button */
 .dropdown {
   position: absolute; 
-  top: 25px; 
-  left: 4px; 
+  top: 20px; /* subir el select para alinearlo con el input adyacente */
+  left: 0; 
   opacity: 1; 
 }
 .dropdown {
-  width: 550px; 
+  display: block; /* evita comportamiento inline que puede variar */
+  box-sizing: border-box; /* el ancho incluye padding y borde */
+  width: 558px; 
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; /* espacio para el ícono del select */
@@ -302,6 +251,7 @@
   border-color: #DEE1E6FF; /* neutral-300 */
   border-style: solid; 
   outline: none; 
+  cursor: pointer; /* mismo comportamiento que los inputs */
   /* quitar estilos nativos del select para poder personalizarlo */
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -343,13 +293,13 @@
 .textboxRightTwo {
   position: absolute; 
   top: 185px; 
-  left: 612px; 
+  left: calc(100% - 46px - 558px); /* posición relativa al ancho del contenedor para mantener simetría exacta */
   opacity: 1; 
   text-align: left; 
   }
 
   .textboxRightTwo input {
-    width: 550px; 
+    width: 558px; 
     height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
@@ -377,7 +327,7 @@
   border-color: #DEE1E6FF; /* neutral-300 */
 }
 /* focused */
-.textboxRightTwo input:focused {
+.textboxRightTwo input:focus {
   color: #171A1FFF; /* neutral-900 */
   background: #DEE1E6FF; /* neutral-300 */
   border-color: #DEE1E6FF; /* neutral-300 */
@@ -396,12 +346,12 @@
 .textboxAverage {
   position: absolute; 
   top: 273px; 
-  left: 17px; 
+  left: 46px; 
   opacity: 1; 
   text-align: left;
 }
 .textboxAverage input {
-  width: 550px; 
+  width: 558px; 
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
@@ -448,12 +398,12 @@
 .textboxEmail {
   position: absolute; 
   top: 273px; 
-  left: 612px; 
+  left: calc(100% - 46px - 558px); /* posición relativa al ancho del contenedor para mantener simetría exacta */
   opacity: 1;
   text-align: left; 
 }
 .textboxEmail input {
-  width: 550px; 
+  width: 558px; 
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
@@ -500,12 +450,12 @@
 .textboxTelephone {
   position: absolute; 
   top: 361px; 
-  left: 17px; 
+  left: 46px; 
   opacity: 1;
   text-align: left; 
 }
 .textboxTelephone input {
-  width: 550px; 
+  width: 558px; 
   height: 49px; 
   padding-left: 12px; 
   padding-right: 12px; 
@@ -566,7 +516,7 @@
 .textExperience {
   position: absolute; 
   top: 24px; 
-  left: 25px; 
+  left: 46px; 
   font-family: Open Sans; /* Heading */
   font-size: 24px; 
   line-height: 32px; 
@@ -576,7 +526,7 @@
 .textQuestion {
   position: absolute; 
   top: 95px; 
-  left: 17px; 
+  left: 46px; 
   font-family: Open Sans; 
   font-size: 14px; 
   line-height: 14px; 
@@ -589,7 +539,7 @@
 .radioYes {
   position: absolute; 
   top: 130px; 
-  left: 20px;
+  left: 46px;
   display: flex; 
   flex-direction: column; 
   color: #171A1FFF; /* neutral-900 */
@@ -657,7 +607,7 @@
 .radioNo {
   position: absolute; 
   top: 130px; 
-  left: 80px;
+  left: 106px;
   display: flex; 
   flex-direction: column; 
   color: #171A1FFF; /* neutral-900 */
@@ -673,13 +623,14 @@
 .textarea {
   position: absolute; 
   top: 161px; 
-  left: 17px; 
+  left: 46px; 
+  right: 46px; 
   opacity: 1;
   text-align: left;
 
 }
 .textarea input {
-  width: 1147px; 
+  width: 100%; 
   height: 99px; 
   padding-top: 7px; 
   padding-bottom: 7px; 
@@ -738,7 +689,7 @@
 .textPostulation {
   position: absolute; 
   top: 24px; 
-  left: 17px; 
+  left: 46px; 
   font-family: Open Sans; 
   font-size: 24px; 
   line-height: 14px; 
@@ -749,7 +700,7 @@
 .textCourses {
   position: absolute; 
   top: 101px; 
-  left: 17px; 
+  left: 46px; 
   font-family: Open Sans; 
   font-size: 14px; 
   line-height: 14px; 
@@ -761,9 +712,9 @@
 .containerCourses {
   position: absolute; 
   top: 133px; 
-  left: 17px; 
-  width: 579px; 
-  height: 40px; 
+  left: 46px; 
+  width: 558px;  /* mismo ancho que los inputs */
+  height: 49px;  /* misma altura que los inputs */
   background: #DEE1E6FF; /* neutral-300 */
   border-radius: 6px; 
   border-width: 1px; 
@@ -772,310 +723,299 @@
   padding-top: 2px;
   font-family: Open Sans;
 }
+/* Asegura que el select dentro del contenedor ocupe todo el ancho y alto, y coincida visualmente con los inputs */
+.containerCourses select {
+  width: 100%;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-family: Open Sans;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #171A1FFF; /* neutral-900 */
+  background: transparent; /* usa el fondo del contenedor */
+  border: none; /* evita doble borde, lo aporta el contenedor */
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.containerCourses select:hover {
+  color: #171A1FFF; /* neutral-900 */
+}
+.containerCourses select:focus {
+  color: #171A1FFF; /* neutral-900 */
+}
+.containerCourses select:disabled {
+  opacity: 0.8;
+}
 .textDisponibility {
   position: absolute; 
   top: 189px; 
-  left: 17px; 
+  left: 46px; 
   font-family: Open Sans; 
   font-size: 14px; 
   line-height: 14px; 
   font-weight: 500; 
   color: #171A1FFF; /* neutral-900 */
+  z-index: 2; /* ensure label stays above the hours container */
 }
 
 /* Container */
 .containerHours {
   position: absolute; 
-  top: 225px; 
-  left: 17px; 
-  width: 1174px; 
+  top: 210px; 
+  left: 46px; 
+  width: 1116px; 
   height: 168px; 
   background: #FAFAFBFF; /* neutral-100 */
   border-radius: 6px; 
 }
 
+/* Normalize native checkbox size to match 16px text line-height */
+.containerHours input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  accent-color: #144B6CFF; /* unify color across browsers that support it */
+}
+
 .textFirstHour {
   position: absolute; 
-  top: 49px; 
+  top: 53px; 
   left: 16px; 
   font-family: Open Sans; 
   font-size: 14px; 
-  line-height: 20px; 
+  line-height: 16px; 
   font-weight: 600; 
   color: #171A1FFF; /* neutral-900 */
+  margin: 0; /* reset default paragraph margins to avoid vertical drift */
 }
 .textSecondHour {
   position: absolute; 
-  top: 77px; 
+  top: 82px; 
   left: 16px; 
   font-family: Open Sans; 
   font-size: 14px; 
-  line-height: 20px; 
+  line-height: 16px; 
   font-weight: 600; 
   color: #171A1FFF; /* neutral-900 */
+  margin: 0; /* reset default paragraph margins to avoid vertical drift */
 }
 .textThirdHour {
   position: absolute; 
-  top: 105px; 
+  top: 110px; 
   left: 16px; 
   font-family: Open Sans; 
   font-size: 14px; 
-  line-height: 20px; 
+  line-height: 16px; 
   font-weight: 600; 
   color: #171A1FFF; /* neutral-900 */
+  margin: 0; /* reset default paragraph margins to avoid vertical drift */
 }
 .textFourthHour {
   position: absolute; 
-  top: 133px; 
+  top: 138px; 
   left: 16px; 
   font-family: Open Sans; 
   font-size: 14px; 
-  line-height: 20px; 
+  line-height: 16px; 
   font-weight: 600; 
   color: #171A1FFF; /* neutral-900 */
+  margin: 0; /* reset default paragraph margins to avoid vertical drift */
 }
 
-.textL {
-  position: absolute; 
-  top: 18px; 
-  left: 1002px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
+.textL, .textMa, .textMi, .textJ, .textV, .textS, .textD {
+  position: absolute;
+  top: 18px;
+  font-family: Open Sans;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
   color: #565D6DFF; /* neutral-600 */
+  transform: translateX(-50%); /* center over checkbox column */
+  margin: 0; /* reset default paragraph margins to avoid vertical drift */
 }
-.textMa {
-  position: absolute; 
-  top: 18px; 
-  left: 1023px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
-  color: #565D6DFF; /* neutral-600 */
-}
-
-.textMi {
-  position: absolute; 
-  top: 18px; 
-  left: 1049px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
-  color: #565D6DFF; /* neutral-600 */
-}
-
-.textJ {
-  position: absolute; 
-  top: 18px; 
-  left: 1075px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
-  color: #565D6DFF; /* neutral-600 */
-}
-
-.textV {
-  position: absolute; 
-  top: 18px; 
-  left: 1096px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
-  color: #565D6DFF; /* neutral-600 */
-}
-.textS {
-  position: absolute; 
-  top: 18px; 
-  left: 1122px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
-  color: #565D6DFF; /* neutral-600 */
-}
-.textD {
-  position: absolute; 
-  top: 18px; 
-  left: 1144px; 
-  font-family: Open Sans; 
-  font-size: 16px; 
-  line-height: 24px; 
-  font-weight: 600; 
-  color: #565D6DFF; /* neutral-600 */
-}
+.textL { left: 148px; }
+.textMa { left: 188px; }
+.textMi { left: 228px; }
+.textJ { left: 268px; }
+.textV { left: 308px; }
+.textS { left: 348px; }
+.textD { left: 388px; }
 
 /* Checkbox */
 .checkbox1 {
   position: absolute; 
-  top: 55px; 
-  left: 995px; 
+  top: 53px; 
+  left: 140px; 
   opacity: 1; 
 }
 .checkbox2 {
   position: absolute; 
-  top: 83px; 
-  left: 995px; 
+  top: 82px; 
+  left: 140px; 
   opacity: 1; 
 }
 .checkbox3 {
   position: absolute; 
-  top: 111px; 
-  left: 995px; 
+  top: 110px; 
+  left: 140px; 
   opacity: 1; 
 }
 .checkbox4 {
   position: absolute; 
-  top: 139px; 
-  left: 995px; 
+  top: 138px; 
+  left: 140px; 
   opacity: 1; 
 }
 .checkbox5 {
   position: absolute; 
-  top: 55px; 
-  left: 1020px; 
+  top: 53px; 
+  left: 180px; 
   opacity: 1; 
 }
 .checkbox6 {
   position: absolute; 
-  top: 83px; 
-  left: 1020px; 
+  top: 82px; 
+  left: 180px; 
   opacity: 1; 
 }
 .checkbox7 {
   position: absolute; 
-  top: 111px; 
-  left: 1020px; 
+  top: 110px; 
+  left: 180px; 
   opacity: 1; 
 }
 .checkbox8 {
   position: absolute; 
-  top: 139px; 
-  left: 1020px; 
+  top: 138px; 
+  left: 180px; 
   opacity: 1; 
 }
 .checkbox9 {
   position: absolute; 
-  top: 55px; 
-  left: 1044px; 
+  top: 53px; 
+  left: 220px; 
   opacity: 1; 
 }
 .checkbox10 {
   position: absolute; 
-  top: 83px; 
-  left: 1044px; 
+  top: 82px; 
+  left: 220px; 
   opacity: 1; 
 }
 .checkbox11 {
   position: absolute; 
-  top: 111px; 
-  left: 1044px; 
+  top: 110px; 
+  left: 220px; 
   opacity: 1; 
 }
 .checkbox12 {
   position: absolute; 
-  top: 139px; 
-  left: 1044px; 
+  top: 138px; 
+  left: 220px; 
   opacity: 1; 
 }
 .checkbox13 {
   position: absolute; 
-  top: 55px; 
-  left: 1066px; 
+  top: 53px; 
+  left: 260px; 
   opacity: 1; 
 }
 .checkbox14 {
   position: absolute; 
-  top: 83px; 
-  left: 1066px; 
+  top: 82px; 
+  left: 260px; 
   opacity: 1; 
 }
 .checkbox15 {
   position: absolute; 
-  top: 111px; 
-  left: 1066px; 
+  top: 110px; 
+  left: 260px; 
   opacity: 1; 
 }
 .checkbox16 {
   position: absolute; 
-  top: 139px; 
-  left: 1066px; 
+  top: 138px; 
+  left: 260px; 
   opacity: 1; 
 }
 .checkbox17 {
   position: absolute; 
-  top: 55px; 
-  left: 1090px; 
+  top: 53px; 
+  left: 300px; 
   opacity: 1; 
 }
 .checkbox18 {
   position: absolute; 
-  top: 83px; 
-  left: 1090px; 
+  top: 82px; 
+  left: 300px; 
   opacity: 1; 
 }
 .checkbox19 {
   position: absolute; 
-  top: 111px; 
-  left: 1090px; 
+  top: 110px; 
+  left: 300px; 
   opacity: 1; 
 }
 .checkbox20 {
   position: absolute; 
-  top: 139px; 
-  left: 1090px; 
+  top: 138px; 
+  left: 300px; 
   opacity: 1; 
 }
 .checkbox21 {
   position: absolute; 
-  top: 55px; 
-  left: 1116px; 
+  top: 53px; 
+  left: 340px; 
   opacity: 1; 
 }
 .checkbox22 {
   position: absolute; 
-  top: 83px; 
-  left: 1116px; 
+  top: 82px; 
+  left: 340px; 
   opacity: 1; 
 }
 .checkbox23 {
   position: absolute; 
-  top: 111px; 
-  left: 1116px; 
+  top: 110px; 
+  left: 340px; 
   opacity: 1; 
 }
 .checkbox24 {
   position: absolute; 
-  top: 139px; 
-  left: 1116px; 
+  top: 138px; 
+  left: 340px; 
   opacity: 1; 
 }
 .checkbox25 {
   position: absolute; 
-  top: 55px; 
-  left: 1139px; 
+  top: 53px; 
+  left: 380px; 
   opacity: 1; 
 }
 .checkbox26 {
   position: absolute; 
-  top: 83px; 
-  left: 1139px; 
+  top: 82px; 
+  left: 380px; 
   opacity: 1; 
 }
 .checkbox27 {
   position: absolute; 
-  top: 111px; 
-  left: 1139px; 
+  top: 110px; 
+  left: 380px; 
   opacity: 1; 
 }
 .checkbox28 {
   position: absolute; 
-  top: 139px; 
-  left: 1139px; 
+  top: 138px; 
+  left: 380px; 
   opacity: 1; 
 }
 .checkbox1 input, .checkbox2 input, .checkbox3 input, .checkbox4 input, .checkbox5 input, .checkbox6 input, .checkbox7 input, .checkbox8 input, .checkbox9 input, .checkbox10 input, .checkbox11 input, .checkbox12 input, .checkbox13 input, .checkbox14 input, .checkbox15 input, .checkbox16 input, .checkbox17 input, .checkbox18 input, .checkbox19 input, .checkbox20 input, .checkbox21 input, .checkbox22 input, .checkbox23 input, .checkbox24 input, .checkbox25 input, .checkbox26 input, .checkbox27 input, .checkbox28 input {
