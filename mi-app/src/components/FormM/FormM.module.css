@@ -1,7 +1,11 @@
 /* Layout container for the whole page */
 .pageContainer {
   position: relative;
-  min-height: 100vh;
+  /* Ensure the container visually wraps absolutely-positioned children */
+  min-height: 1440px; /* keep buttons inside without excessive bottom whitespace */
+  /* White gutters with a modest gap below the action buttons */
+  padding: 0px 0px 80px 0px;
+  background-color: transparent; /* keep page background color, avoid coloring gutters */
 }
 
 /* Header Container */
