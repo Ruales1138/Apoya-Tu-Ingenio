@@ -83,7 +83,6 @@ function Login() {
             >
               <option>Estudiante</option>
               <option>Docente</option>
-              <option>Administrador</option>
             </select>
           </div>
 

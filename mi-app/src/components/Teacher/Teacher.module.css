@@ -1,0 +1,660 @@
+/* --- Barra superior --- */
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: #C2262B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-shadow: 0px 0px 1px rgba(23,26,31,0.87), 0px 0px 2px rgba(23,26,31,0.08);
+  z-index: 1000;
+}
+
+.logo { width: 32px; height: 32px; }
+
+.rightSection { display: flex; align-items: center; gap: 16px; }
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+.button:hover { background-color: rgba(255,255,255,0.15); }
+
+.perfil { width: 32px; height: 32px; border-radius: 50%; }
+
+/* --- Layout general --- */
+.pageContainer { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* --- Sidebar --- */
+.sidebar {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  width: 300px;
+  height: calc(100vh - 64px);
+  background-color: #fff;
+  box-shadow: 1px 0 4px rgba(0,0,0,0.1);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.menu { list-style: none; margin:0; padding:0; }
+
+.menu li {
+  display: flex;
+  align-items: center;
+  padding: 12px 30px;
+  color: #2d2d2d;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.12s ease;
+}
+
+.menu li:hover { background-color: rgba(244,244,244,0.7); }
+.menu li.active { background-color: #f1f1f1; font-weight: 600; color: #C2262B; }
+
+.logoUdemContainer { padding: 20px; text-align: center; }
+.logoUdem { width: 150px; height: auto; margin-bottom: 20px; }
+
+/* --- Contenido principal --- */
+.content {
+  margin-top: 64px;
+  margin-left: 300px;
+  padding: 24px;
+  flex: 1;
+  background-color: #fafafa;
+  min-height: calc(100vh - 64px - 50px);
+}
+
+section { scroll-margin-top: calc(var(--header-height,64px)+12px); padding: 5px 25px; position: relative; }
+.content h2 { text-align: left; margin-left: 30px; margin-top: 10px; margin-bottom: 20px; font-family: 'Open Sans', sans-serif; font-size: 24px; color: #333; }
+
+/* --- Footer --- */
+.footer {
+  margin-left: 300px;
+  height: 50px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footerLinks a { margin-right: 24px; text-decoration: none; color: #333; font-size: 14px; }
+.footerLinks a:hover { text-decoration: underline; }
+
+/* Evitar scroll horizontal */
+body { margin: 0; overflow-x: hidden; }
+
+
+.footer {
+  margin-left: 300px; /* mismo ancho que sidebar */
+  height: 50px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footerLinks a {
+  margin-right: 24px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.footerLinks a:hover {
+  text-decoration: underline;
+}
+
+.footerIcons a {
+  margin-left: 16px;
+  color: #333;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.footerIcons a:hover {
+  color: #C2262B;
+}
+
+
+/* --- EVITAR SCROLL HORIZONTAL --- */
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.formularioConvocatoria {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.formularioConvocatoria label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+}
+
+.formularioConvocatoria input,
+.formularioConvocatoria textarea {
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.formularioConvocatoria textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.publicarBtn {
+  background-color: #C2262B;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.publicarBtn:hover {
+  background-color: #a81f24;
+}
+
+
+.formularioConvocatoria {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.formularioConvocatoria label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+  text-align: left; /* Los títulos a la izquierda */
+}
+
+.formularioConvocatoria input,
+.formularioConvocatoria textarea {
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.formularioConvocatoria textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.publicarBtn {
+  background-color: #C2262B;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.publicarBtn:hover {
+  background-color: #a81f24;
+}
+
+/* NUEVO: filas de dos columnas */
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+
+.formRow label {
+  flex: 1;
+}
+
+/* Filas de dos columnas para inputs */
+.formRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start; /* Los labels se alinean arriba */
+}
+
+.formRow label {
+  flex: 1;               /* Cada campo ocupa la misma anchura */
+  display: flex;
+  flex-direction: column;
+}
+
+.formRow input,
+.formRow textarea {
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;           /* Ocupa todo el ancho del label */
+  box-sizing: border-box;
+}
+
+/* Alertas importantes */
+.alertasImportantes {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 25px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.alertasImportantes h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: left;
+}
+
+.alertasList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alertaItem {
+  border-left: 5px solid #C2262B;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  background-color: #fff5f5;
+}
+
+.alertaItem.info { border-left-color: #2E86C1; background-color: #eaf2fb; }
+.alertaItem.success { border-left-color: #28a745; background-color: #e6f4ea; }
+.alertaItem.warning { border-left-color: #ffc107; background-color: #fff8e1; }
+
+.alertaHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.alertaTitulo {
+  font-weight: 600;
+  color: #C2262B;
+}
+
+.alertaFecha {
+  font-size: 12px;
+  color: #888;
+}
+
+.alertaMensaje {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
+/* --- Alertas importantes estilo estudiante --- */
+.alertasImportantes {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-top: 25px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.alertasImportantes h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #555; /* gris neutro */
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* espacio entre icono y texto */
+}
+
+.alertasList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alertaItem {
+  border-left: 5px solid #888; /* gris neutro */
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.alertaItem.info { border-left-color: #2E86C1; background-color: #eaf2fb; }
+.alertaItem.success { border-left-color: #28a745; background-color: #e6f4ea; }
+.alertaItem.warning { border-left-color: #ffc107; background-color: #fff8e1; }
+
+.alertaHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.alertaTitulo {
+  font-weight: 600;
+  color: #555; /* gris neutro */
+  text-align: left;
+}
+
+.alertaFecha {
+  font-size: 12px;
+  color: #888;
+}
+
+.alertaMensaje {
+  font-size: 14px;
+  color: #555; /* gris neutro */
+  margin: 0;
+  text-align: left;
+}
+
+
+/* Formulario de registro de informes */
+.formularioInforme {
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.formularioInforme h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.formularioInforme label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+  text-align: left;
+}
+
+.formularioInforme select,
+.formularioInforme textarea {
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.formularioInforme textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Filas de dos columnas */
+.formularioInforme .formRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.formularioInforme .formRow label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Botón de registrar informe (igual que publicar convocatoria) */
+.registrarBtn {
+  background-color: #C2262B;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.registrarBtn:hover {
+  background-color: #a81f24;
+}
+
+/* --- CONTENEDOR --- */
+.gestionContainer {
+  margin-top: 20px;
+}
+
+/* --- BARRA DE BUSQUEDA + BOTONES --- */
+.gestionBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.gestionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.filterIaBtn,
+.applyFilterBtn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: white;
+  cursor: pointer;
+}
+
+.filterIaWrapper {
+  position: relative;
+}
+
+.filterIaMenu {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  width: 160px;
+  border-radius: 6px;
+  z-index: 30;
+}
+
+.filterOption {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.filterOption:hover {
+  background: #f2f2f2;
+}
+
+/* --- TABLA --- */
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.candidatesTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.candidatesTable th {
+  text-align: left;
+  padding: 12px;
+  background: #f2f2f2; /* gris claro como pediste */
+  font-weight: 600;
+}
+
+.candidatesTable td {
+  padding: 12px;
+  border-top: 1px solid #ddd;
+}
+
+/* Zebra filas */
+.candidatesTable tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* --- CELDA CANDIDATO --- */
+.candidateCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.candidateAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.candidateName {
+  font-weight: 500;
+}
+
+/* --- BADGES ESTADO --- */
+.estadoBadge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.estadoPreseleccionado {
+  background: #d1ffd6;
+  color: #0e7b00;
+}
+
+.estadoRevision {
+  background: #ffe9b8;
+  color: #8a5300;
+}
+
+.estadoEntrevistado {
+  background: #cfe4ff;
+  color: #004b87;
+}
+
+/* --- ACCIONES --- */
+.actionsCell {
+  display: flex;
+  gap: 10px;
+}
+
+.actionBtn {
+  font-size: 18px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Fila vacía */
+.emptyRow {
+  text-align: center;
+  padding: 14px;
+  color: #777;
+}
+
+/* --- FIX REAL PARA ALINEAR LAS FILAS --- */
+
+/* Forzamos que todas las celdas tengan la misma alineación vertical */
+.candidatesTable td,
+.candidatesTable th {
+  vertical-align: middle !important;
+}
+
+/* Quitamos padding solo en acciones para que no suba/baje */
+.candidatesTable td.actionsCell {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Asegura que todo dentro ocupe 1 sola línea centrada */
+.actionsCell {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px;
+  height: 100%;
+  white-space: nowrap;   /* evita que se “rompan” a otra línea */
+}
+
+.actionBtn {
+  padding: 0 !important;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
