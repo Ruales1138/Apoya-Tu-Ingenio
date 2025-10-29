@@ -5,6 +5,9 @@ const PORT = process.env.PORT || 3001;
 // 👇 importa los modelos para que Sequelize los registre
 require("./models/User");
 require("./models/Convocatoria");
+require("./models/Application");
+require("./models/Assignment");
+require("./models/MonitoringReport");
 
 (async () => {
   try {

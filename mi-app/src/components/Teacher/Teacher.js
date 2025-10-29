@@ -11,14 +11,80 @@ function PublicarConvocatoria() {
   const [descripcion, setDescripcion] = useState('');
   const [materia, setMateria] = useState('');
   const [habilidades, setHabilidades] = useState('');
+  const [requisitos, setRequisitos] = useState('');
+  const [beneficios, setBeneficios] = useState('');
   const [fechaLimite, setFechaLimite] = useState('');
   const [puestos, setPuestos] = useState(1);
+  const [submitting, setSubmitting] = useState(false);
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ titulo, descripcion, materia, habilidades, fechaLimite, puestos });
-    alert("Convocatoria publicada!");
-    setTitulo(''); setDescripcion(''); setMateria(''); setHabilidades(''); setFechaLimite(''); setPuestos(1);
+    // Enviar al backend
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Debes iniciar sesión como docente para publicar una convocatoria.");
+
+    (async () => {
+      try {
+        setSubmitting(true);
+        setMessage("");
+        // Asegurarse de enviar arrays donde el modelo espera ARRAY
+        const habilidadesArray = habilidades
+          ? habilidades.split(",").map((h) => h.trim()).filter(Boolean)
+          : [];
+
+        const requisitosArray = requisitos
+          ? requisitos.split(",").map((r) => r.trim()).filter(Boolean)
+          : [];
+
+        const beneficiosArray = beneficios
+          ? beneficios.split(",").map((b) => b.trim()).filter(Boolean)
+          : [];
+
+        const payload = {
+          titulo,
+          descripcion,
+          materia,
+          habilidadesRequeridas: habilidadesArray,
+          requisitos: requisitosArray,
+          beneficios: beneficiosArray,
+          numeroPuestos: Number(puestos) || 1,
+          fechaFin: fechaLimite,
+        };
+
+        const res = await fetch("http://localhost:3001/api/convocatorias", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          const msg = data && data.message ? data.message : "Error al publicar convocatoria";
+          throw new Error(msg);
+        }
+
+        // éxito
+        setMessage("Convocatoria publicada correctamente.");
+        // limpiar formulario
+        setTitulo("");
+        setDescripcion("");
+        setMateria("");
+  setHabilidades("");
+  setRequisitos("");
+  setBeneficios("");
+        setFechaLimite("");
+        setPuestos(1);
+      } catch (err) {
+        console.error(err);
+        setMessage(err.message || "Error al publicar convocatoria");
+      } finally {
+        setSubmitting(false);
+      }
+    })();
   };
 
   return (
@@ -47,6 +113,18 @@ function PublicarConvocatoria() {
 
       <div className={style.formRow}>
         <label>
+          Requisitos (separar por comas)
+          <input type="text" value={requisitos} onChange={(e) => setRequisitos(e.target.value)} placeholder="Ej: experiencia, manejo de paquete X" />
+        </label>
+
+        <label>
+          Beneficios (separar por comas)
+          <input type="text" value={beneficios} onChange={(e) => setBeneficios(e.target.value)} placeholder="Ej: auxilio, certificación" />
+        </label>
+      </div>
+
+      <div className={style.formRow}>
+        <label>
           Fecha Límite
           <input type="date" value={fechaLimite} onChange={(e) => setFechaLimite(e.target.value)} required />
         </label>
@@ -57,7 +135,11 @@ function PublicarConvocatoria() {
         </label>
       </div>
 
-      <button type="submit" className={style.publicarBtn}>Publicar Convocatoria</button>
+      <button type="submit" className={style.publicarBtn} disabled={submitting}>
+        {submitting ? "Publicando..." : "Publicar Convocatoria"}
+      </button>
+
+      {message && <p className={style.publishMessage}>{message}</p>}
     </form>
   );
 }
@@ -142,64 +224,105 @@ function AlertasImportantes() {
 function GestionCandidatos() {
   const [search, setSearch] = useState("");
   const [showFilterIAMenu, setShowFilterIAMenu] = useState(false);
-  const [candidates, setCandidates] = useState([
-    {
-      id: 1,
-      nombre: "Andrés Gómez",
-      avatar: perfil,
-      materia: "Matemáticas",
-      estado: "En revisión",
-      score: 0.88,
-      visto: false,
-      preseleccionado: false,
-    },
-    {
-      id: 2,
-      nombre: "María López",
-      avatar: perfil,
-      materia: "Física",
-      estado: "Preseleccionado",
-      score: 0.94,
-      visto: true,
-      preseleccionado: true,
-    },
-    {
-      id: 3,
-      nombre: "Carlos Ramírez",
-      avatar: perfil,
-      materia: "Programación",
-      estado: "Entrevistado",
-      score: 0.76,
-      visto: false,
-      preseleccionado: false,
-    },
-  ]);
+  const [candidates, setCandidates] = useState([]);
+  const [loadingCandidates, setLoadingCandidates] = useState(false);
+  const [errorCandidates, setErrorCandidates] = useState("");
+  // IA filter state
+  const [iaThreshold, setIaThreshold] = useState(70); // percentage
+  const [onlyAboveThreshold, setOnlyAboveThreshold] = useState(false);
 
   // Filtrado en tiempo real por nombre
-  const filtered = candidates.filter((c) =>
-    c.nombre.toLowerCase().includes(search.trim().toLowerCase())
-  );
+  const filtered = candidates
+    .filter((c) => c.nombre.toLowerCase().includes(search.trim().toLowerCase()))
+    .filter((c) => (onlyAboveThreshold ? Math.round((c.score || 0) * 100) >= iaThreshold : true));
 
   // Handlers
   const toggleVisto = (id) =>
     setCandidates((prev) => prev.map((c) => (c.id === id ? { ...c, visto: !c.visto } : c)));
 
-  const marcarPreseleccionado = (id) =>
-    setCandidates((prev) =>
-      prev.map((c) =>
-        c.id === id
-          ? { ...c, preseleccionado: true, estado: "Preseleccionado" }
-          : c
-      )
-    );
+  // Call backend to change application status to preseleccionada
+  const marcarPreseleccionado = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Inicia sesión como docente para preseleccionar.");
+    try {
+      const res = await fetch(`http://localhost:3001/api/applications/${id}/status`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ estado: "preseleccionada" }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Error");
+      setCandidates((prev) => prev.map((c) => (c.id === id ? { ...c, preseleccionado: true, estado: "Preseleccionado" } : c)));
+    } catch (err) {
+      console.error(err);
+      alert("No se pudo preseleccionar: " + (err.message || "Error"));
+    }
+  };
 
-  const eliminarCandidato = (id) =>
-    setCandidates((prev) => prev.filter((c) => c.id !== id)); // respuesta A: desaparece
+  // Mark application as rejected via backend
+  const eliminarCandidato = async (id) => {
+    const token = localStorage.getItem("token");
+    if (!token) return alert("Inicia sesión como docente para rechazar postulaciones.");
+    try {
+      const res = await fetch(`http://localhost:3001/api/applications/${id}/status`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ estado: "rechazada" }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Error");
+      // Option: remove from list or update estado
+      setCandidates((prev) => prev.map((c) => (c.id === id ? { ...c, estado: "Rechazada" } : c)));
+    } catch (err) {
+      console.error(err);
+      alert("No se pudo rechazar: " + (err.message || "Error"));
+    }
+  };
 
   const aplicarFiltroIA = () => {
-    // Placeholder - por ahora no hace nada real
-    alert("Aplicando filtro IA (placeholder)");
+    // Toggle the filter menu behavior: apply client-side filter by threshold
+    setOnlyAboveThreshold((s) => !s);
   };
+
+  // Fetch candidates (applications) from backend
+  useEffect(() => {
+    const load = async () => {
+      setLoadingCandidates(true);
+      setErrorCandidates("");
+      const token = localStorage.getItem("token");
+      if (!token) {
+        setErrorCandidates("Inicia sesión para ver las postulaciones (Docente)");
+        setLoadingCandidates(false);
+        return;
+      }
+      try {
+        const res = await fetch("http://localhost:3001/api/applications", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || "Error al cargar aplicaciones");
+        const apps = Array.isArray(data.applications) ? data.applications : [];
+        const mapped = apps.map((a) => ({
+          id: a.id,
+          nombre: a.estudiante?.username || `estudiante-${a.estudianteId}`,
+          avatar: perfil,
+          materia: a.convocatoria?.materia || a.convocatoria?.titulo || "-",
+          estado: a.estado || "postulada",
+          score: typeof a.score === 'number' ? (a.score / 100) : 0, // normalize to 0..1
+          visto: false,
+          preseleccionado: a.estado === 'preseleccionada' || a.estado === 'seleccionada',
+          cvPath: a.cvPath || null,
+        }));
+        setCandidates(mapped);
+      } catch (err) {
+        console.error(err);
+        setErrorCandidates(err.message || "Error");
+      } finally {
+        setLoadingCandidates(false);
+      }
+    };
+    load();
+  }, []);
 
   return (
     <div className={style.gestionContainer}>

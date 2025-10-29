@@ -107,6 +107,7 @@ export default function Carousel() {
               convocatorias.map((conv) => (
                 <div key={conv.id} className={style.cardWrapper}>
                   <Card
+                    id={conv.id}
                     titulo={conv.titulo}
                     materia={conv.materia}
                     numeroPuestos={conv.numeroPuestos}

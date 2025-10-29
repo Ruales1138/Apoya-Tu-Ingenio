@@ -198,6 +198,12 @@ body {
   background-color: #a81f24;
 }
 
+.publishMessage {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #0b7a3a; /* verde éxito */
+}
+
 
 .formularioConvocatoria {
   background: #fff;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./MoreInfo.module.css";
 import logo_subir from "../../images/logo_subir.png";
 import { Link, useLocation } from 'react-router-dom';
@@ -20,6 +20,7 @@ export default function MoreInfo() {
   };
 
   const info = {
+    id: state.id,
     title: state.titulo || 'Monitoría de Programación I',
     curso: state.materia || 'Ingeniería de Sistemas',
     fechaLimite: formatDate(state.fechaFin) || '15/05/2024',
@@ -29,6 +30,45 @@ export default function MoreInfo() {
     requisitos: Array.isArray(state.requisitos) ? state.requisitos : undefined,
     habilidades: Array.isArray(state.habilidades) ? state.habilidades : undefined,
     beneficios: Array.isArray(state.beneficios) ? state.beneficios : undefined,
+  };
+  const [perfilTexto, setPerfilTexto] = useState("");
+  const [cvFile, setCvFile] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState(null);
+
+  const handleApply = async (e) => {
+    e.preventDefault();
+    setSubmitResult(null);
+    if (!info.id) {
+      setSubmitResult({ ok: false, message: "Falta el ID de la convocatoria" });
+      return;
+    }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setSubmitResult({ ok: false, message: "Inicia sesión para aplicar" });
+      return;
+    }
+    try {
+      setSubmitting(true);
+      const formData = new FormData();
+      formData.append("convocatoriaId", info.id);
+      if (perfilTexto) formData.append("perfilTexto", perfilTexto);
+      if (cvFile) formData.append("cv", cvFile);
+      const res = await fetch("http://localhost:3001/api/applications", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "No se pudo enviar la aplicación");
+      setSubmitResult({ ok: true, message: `Aplicación enviada. Puntaje IA: ${data.application?.score ?? 0}` });
+      setPerfilTexto("");
+      setCvFile(null);
+    } catch (err) {
+      setSubmitResult({ ok: false, message: err.message || "Error al aplicar" });
+    } finally {
+      setSubmitting(false);
+    }
   };
   return (
     <div>
@@ -170,27 +210,48 @@ export default function MoreInfo() {
           </ul>
         </section>
 
-        {/* Application form */}
+        {/* Aplicar a esta convocatoria (perfil + CV) */}
         <section className={style.applicationForm}>
           <div className={style.formHeader}>
             <img src={logo_subir} alt="logo_subir" />
-
-            {/* Bloque de texto (Título + descripción) */}
             <div className={style.formHeaderText}>
-              <h2 className={style.formTitle}>Formulario de aplicación a monitoría académica</h2>
+              <h2 className={style.formTitle}>Aplicar a esta convocatoria</h2>
               <p className={style.formDescription}>
-                Diligencia este formulario para postularte a las convocatorias de monitorías.<br />
-                La información será revisada por el docente o coordinador responsable.<br />
-                La IA puede sugerir opciones, pero la decisión final será académica.
+                Describe brevemente tu perfil para esta monitoría y adjunta tu hoja de vida (opcional).
+                Se calculará un puntaje automático con IA para ayudar al docente en la pre-selección.
               </p>
             </div>
-
-            {/* Botones a la derecha */}
             <div className={style.formButtonsColumn}>
-              <Link to="/form" className={style.submitBtn}>Enviar aplicación</Link>
               <div className={style.aiSupportBox}>Con apoyo de IA</div>
             </div>
           </div>
+          <form className={style.applyForm} onSubmit={handleApply}>
+            <label className={style.applyLabel}>Tu perfil</label>
+            <textarea
+              className={style.applyTextarea}
+              placeholder="Cuenta tu experiencia y por qué eres buen candidato/a (habilidades, proyectos, cursos, etc.)"
+              value={perfilTexto}
+              onChange={(e) => setPerfilTexto(e.target.value)}
+              rows={5}
+            />
+            <label className={style.applyLabel}>Hoja de vida (PDF, opcional)</label>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={(e) => setCvFile(e.target.files && e.target.files[0])}
+            />
+            <div className={style.applyActions}>
+              <Link to="/student" className={style.backBtnInline}>Cancelar</Link>
+              <button type="submit" className={style.submitBtn} disabled={submitting}>
+                {submitting ? "Enviando..." : "Enviar aplicación"}
+              </button>
+            </div>
+            {submitResult && (
+              <div className={submitResult.ok ? style.successMsg : style.errorMsg}>
+                {submitResult.message}
+              </div>
+            )}
+          </form>
         </section>
       </div>
 

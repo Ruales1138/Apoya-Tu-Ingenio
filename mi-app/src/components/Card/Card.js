@@ -6,7 +6,7 @@ import portada_2 from "../../images/portada_2.png";
 import portada_3 from "../../images/portada_3.png";
 
 // Muestra solo: imagen, título, materia, número de puestos y fecha límite
-function Card({ titulo, materia, numeroPuestos, fechaFin, imagen, descripcion, requisitos, habilidades, beneficios }) {
+function Card({ id, titulo, materia, numeroPuestos, fechaFin, imagen, descripcion, requisitos, habilidades, beneficios }) {
   const navigate = useNavigate();
 
   // Selección automática de portada según la materia (case-insensitive)
@@ -63,6 +63,7 @@ function Card({ titulo, materia, numeroPuestos, fechaFin, imagen, descripcion, r
           // Enviar los datos de esta card a la página MoreInfo usando el estado de navegación
           navigate('/info', {
             state: {
+              id,
               titulo,
               materia,
               numeroPuestos,
